@@ -9,7 +9,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
-    <context:property-placeholder location="classpath:redis.properties" />
+    <!--<context:property-placeholder location="classpath:*.properties" />-->
 
     <!-- 定义consumer的参数,这个构造方法必须指定,否则spring启动会报错 -->
     <bean id="consumerProperties" class="java.util.HashMap">
