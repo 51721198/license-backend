@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>createcode</title>
+    <link rel="stylesheet" href="../css/frame/960.css" type="text/css"
+          media="screen" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/frame/template.css" type="text/css"
+          media="screen" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/frame/colour.css" type="text/css"
+          media="screen" charset="utf-8"/>
+    <script language="javascript" type="text/javascript"
+            src="../My97DatePicker/WdatePicker.js"></script>
+    <script language="javascript" type="text/javascript"
+            src="../js/jquery-1.9.0.min.js"></script>
+    <script language="javascript" type="text/javascript"
+            src="../js/createcode.js"></script>
+</head>
+<body>
+<h1 id="head">序列号管理系统</h1>
+<ul id="navigation">
+    <li><a href="/license/bounceController/toshowallcodes">查询序列号</a></li>
+    <li><a href="/license/bounceController/toshowallhospital">医院信息</a></li>
+    <li><span class="active"><a
+            href="/license/bounceController/tocreatecode">生成序列号</a></span></li>
+</ul>
+<div id="content" class="container_17 clearfix">
+    <div class="grid_17">
+        <h2>序列号生成</h2>
+    </div>
+
+
+    <div class="grid_3">
+        <h6>选择医院</h6>
+        <select id="select_id" name="医院" style="margin-bottom: 20px">
+            <option value=""></option>
+        </select>
+        <p id="warn-number"
+           style="float: right; padding-left: 20px; color: red"></p>
+        <a style="padding-left: 15px"
+           href="/license/bounceController/toaddhospital">添加医院</a>
+    </div>
+
+    <form action="/license/licenseController/savecode" method="post">
+        <div class="grid_10" style="display: none">
+            <p>
+                <label for="title">医院编号</label> <input id="hosnumber" type="text" name="hospitalNumber"
+                                                       readonly="readonly"/>
+            </p>
+        </div>
+
+        <div class="grid_3" style="clear: both">
+            <p>
+            <h6>选择到期日期</h6>
+            <input class="Wdate" id="duedate" type="text" name="expiredDate"
+                   onclick="WdatePicker()">
+            <p id="warn-date"
+               style="float: right; padding-left: 20px; color: red"></p>
+            </p>
+        </div>
+
+        <div class="grid_9" style="clear: both">
+
+            <h6>生成序列号</h6>
+            <p>
+                <button class="del" type="button" id="createcode">生成</button>
+            </p>
+            <input id="code1" type="text" name="sourceNumber"
+                   readonly="readonly">
+            <p id="warn-encrypt"
+               style="float: right; padding-left: 20px; color: red"></p>
+        </div>
+
+        <div class="grid_9" style="clear: both">
+            <p>
+            <h6>加密序列号</h6>
+            <p>
+                <button class="del" type="button" id="encryptcode">加密</button>
+            </p>
+            <input id="code2" type="text" name="encryptedNumber" readonly="readonly">
+            <p id="warn-go" style="float: right; padding-left: 20px; color: red"></p>
+            </p>
+        </div>
+
+        <div class="grid_10" style="clear: both;display: none">
+            <p>
+                <input id="code3" type="text" name="keyId" readonly="readonly"/>
+            </p>
+        </div>
+
+
+        <div class="grid_10" style="clear: both">
+            <p class="submit">
+            <h6>提交序列号</h6>
+            <input type="reset" value="重置" style="margin-left: 5px"/> <input
+                id="go" type="submit" value="提交" style="margin-left: 30px">
+            </p>
+        </div>
+    </form>
+
+</div>
+
+<div id="foot">
+    <a href="#">Contact Me</a>
+</div>
+</body>
+</html>

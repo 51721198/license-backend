@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <title>hospital</title>
+    <link rel="stylesheet" href="../css/frame/960.css" type="text/css"
+          media="screen" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/frame/template.css" type="text/css"
+          media="screen" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/frame/colour.css" type="text/css"
+          media="screen" charset="utf-8"/>
+    <script language="javascript" type="text/javascript"
+            src="../js/jquery-1.9.0.min.js"></script>
+    <script language="javascript" type="text/javascript"
+            src="../js/hospital.js"></script>
+    <link rel="stylesheet" href="../css/pagination.css" type="text/css"
+          media="screen" charset="utf-8"/>
+    <script language="javascript" type="text/javascript"
+            src="../js/pagination.js"></script>
+</head>
+<body>
+<h1 id="head">序列号管理系统</h1>
+<ul id="navigation">
+    <li><a href="/license/bounceController/toshowallcodes">查询序列号</a></li>
+    <li><span class="active"><a
+            href="/license/bounceController/toshowallhospital">医院信息</a></span></li>
+    <li><a href="/license/bounceController/tocreatecode">生成序列号</a></li>
+</ul>
+<div id="content" class="container_17 clearfix"
+     style="position: relative;">
+    <div>
+        <h2>所有医院信息</h2>
+    </div>
+    <div class="grid_17">
+        <table id="allhospital">
+            <tr>
+                <th>医院编号</th>
+                <th>医院名称</th>
+                <th>医院电话</th>
+                <th>医院地址</th>
+                <th colspan="2" width="15%">操作</th>
+            </tr>
+        </table>
+    </div>
+    <div style="padding-left: 600px; position: absolute; bottom: 0px;">
+        <span id="pagination" class="pagination"></span>
+    </div>
+    <div style="padding-left: 30px; position: absolute; bottom: 50px;">
+        <lable>您可以：<a
+                href="/license/bounceController/toaddhospital">添加医院</a></lable>
+        <br>
+        <lable>或者： <a
+                href="/license/bounceController/tocreatecode">生成序列号</a></lable>
+    </div>
+</div>
+<div id="foot">
+    <a href="#">Contact Me</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <title>Steal My Admin</title>
+    <link rel="stylesheet" href="../css/frame/960.css" type="text/css"
+          media="screen" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/frame/template.css" type="text/css"
+          media="screen" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/frame/colour.css" type="text/css"
+          media="screen" charset="utf-8"/>
+    <script language="javascript" type="text/javascript"
+            src="../js/jquery-1.9.0.min.js"></script>
+    <script language="javascript" type="text/javascript"
+            src="../js/showallcodes.js"></script>
+    <link rel="stylesheet" href="../css/pagination.css" type="text/css"
+          media="screen" charset="utf-8"/>
+    <script language="javascript" type="text/javascript"
+            src="../js/pagination.js"></script>
+</head>
+<body>
+
+<h1 id="head">序列号管理系统</h1>
+
+<ul id="navigation">
+    <li><span class="active"><a href="/license/bounceController/toshowallcodes">查询序列号</a></span></li>
+    <li><a href="/license/bounceController/toshowallhospital">医院信息</a></li>
+    <li><a href="/license/bounceController/tocreatecode">生成序列号</a></li>
+</ul>
+<div id="content" class="container_17">
+    <div>
+        <h2>序列号查询</h2>
+    </div>
+    <a href="/license/bounceController/tocreatecode"
+       style="margin-left: 850px; font-weight: bold; font-size: 23px">生成序列号</a>
+
+    <div class="grid_17">
+        <table class="allcodes">
+            <tr>
+                <th style="width: 5%">序号</th>
+                <th style="width: 15%">原序列号</th>
+                <th style="width: 10%">生成日期</th>
+                <th style="width: 10%">到期日期</th>
+                <th style="width: 25%">加密序列号</th>
+                <th style="width: 15%">医院名称</th>
+                <th style="width: 5%">使用</th>
+                <th style="width: 20%">操作</th>
+            </tr>
+        </table>
+    </div>
+    <div style="padding-left: 600px; position: absolute; bottom: 0px;">
+        <span id="pagination" class="pagination"></span>
+    </div>
+
+</div>
+
+<div id="foot">
+    <a href="/license/licenseController/createkeypair" onclick="return false">生成新密钥对</a>
+</div>
+</body>
+</html>

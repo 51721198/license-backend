@@ -1,0 +1,533 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"s",
+				"src"
+			],
+			[
+				"ngre",
+				"ng-repeat	AngularJS"
+			],
+			[
+				"ngco",
+				"ng-controller	AngularJS"
+			],
+			[
+				"geth",
+				"getHeroByName	method"
+			],
+			[
+				"us",
+				"username	property"
+			],
+			[
+				"getH",
+				"getHeroes	method"
+			],
+			[
+				"ge",
+				"get	window.ProxyZoneSpec"
+			],
+			[
+				"a",
+				"alert	function"
+			],
+			[
+				"SU",
+				"subscribe	method"
+			],
+			[
+				"ex",
+				"extractData	window.HeroService"
+			],
+			[
+				"su",
+				"subscribe	method"
+			],
+			[
+				"He",
+				"Hero	alias"
+			],
+			[
+				"f",
+				"filter	property"
+			],
+			[
+				"to",
+				"toPromise	Rx.Tests.Async"
+			],
+			[
+				"resolve",
+				"onResolve	window.ZoneAwarePromise"
+			],
+			[
+				"subs",
+				"subscribeToSource	window.SubscriptionDelaySubscriber"
+			],
+			[
+				"OB",
+				"Observable	alias"
+			],
+			[
+				"he",
+				"heroService	property"
+			],
+			[
+				"user",
+				"userID	property"
+			],
+			[
+				"hero",
+				"heroes	parameter"
+			],
+			[
+				"cons",
+				"console	var"
+			],
+			[
+				"get",
+				"getHeroes	method"
+			],
+			[
+				"con",
+				"console	var"
+			],
+			[
+				"lo",
+				"logger"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"h",
+				"h2	Tag"
+			],
+			[
+				"new",
+				"new Date()	Date"
+			],
+			[
+				"date",
+				"new Date()	Date"
+			],
+			[
+				"padd",
+				"paddingLeft	Style CSS"
+			],
+			[
+				"le",
+				"length	String"
+			],
+			[
+				"hospital",
+				"hospitalNumber"
+			],
+			[
+				"ht",
+				"innerHTML	Element"
+			],
+			[
+				"pa",
+				"padding-left"
+			],
+			[
+				"borde",
+				"border-color"
+			],
+			[
+				"bo",
+				"border-style"
+			],
+			[
+				"bor",
+				"border-width"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"for",
+				"form	Tag"
+			],
+			[
+				"parse",
+				"parse(dateString)	Date"
+			],
+			[
+				"conten",
+				"contentType	Document"
+			],
+			[
+				"alert",
+				"alert(message)	Window"
+			],
+			[
+				"aler",
+				"alert(message)	Window"
+			],
+			[
+				"on",
+				"onchange	Attr"
+			],
+			[
+				"verify",
+				"verifyname"
+			],
+			[
+				"respose",
+				"responseText	XMLHttpRequest"
+			],
+			[
+				"getel",
+				"getElementById(id)	Element"
+			],
+			[
+				"sta",
+				"status	Window"
+			],
+			[
+				"ready",
+				"readyState	Document"
+			],
+			[
+				"if",
+				"if()"
+			],
+			[
+				"fu",
+				"function with name"
+			],
+			[
+				"xmlh",
+				"description-XMLHttpRequest"
+			]
+		]
+	},
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 375.0,
+		"last_filter": "package",
+		"selected_items":
+		[
+			[
+				"package",
+				"Package Control: Disable Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"javas",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ssj",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"jsh",
+				"JSHint"
+			],
+			[
+				"ssys",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript"
+			]
+		],
+		"width": 514.0
+	},
+	"console":
+	{
+		"height": 151.0,
+		"history":
+		[
+			"npm install -g jshint",
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Liu.Dun/Downloads/angular.min.js",
+		"/C/Users/Liu.Dun/AppData/Roaming/Sublime Text 3/Packages/ConvertToUTF8/ConvertToUTF8.sublime-settings",
+		"/F/WorkStore/JavaRoad/license/src/main/webapp/index.html",
+		"/C/Users/Liu.Dun/AppData/Roaming/Sublime Text 3/Packages/SublimeSimpleSync/SublimeSimpleSync.sublime-settings",
+		"/F/WorkStore/JavaRoad/license/src/main/webapp/WEB-INF/web.xml",
+		"/C/Users/Liu.Dun/Desktop/eclipse优化.txt",
+		"/D/MBProject/SourceCode/shine-manager/shine-manager-web/manager-web/src/main/webapp/WEB-INF/js/app-controller.js",
+		"/D/MBProject/SourceCode/shine-manager/shine-manager-web/manager-web/src/main/webapp/WEB-INF/js/views/management/integration_gateway/monitoring_data/monitoring_data.html",
+		"/D/MBProject/SourceCode/shine-manager/shine-manager-web/manager-web/src/main/webapp/WEB-INF/js/views/management/integration_gateway/monitoring_data/monitoring_data_details.html",
+		"/D/MBProject/SourceCode/shine-manager/shine-manager-web/manager-web/src/main/webapp/WEB-INF/js/views/management/medical_gateway/performance_monitoring/performance_monitoring.html",
+		"/D/MBProject/SourceCode/shine-manager/shine-manager-web/manager-web/src/main/webapp/WEB-INF/js/views/management/medical_gateway/statistics/statistics.html",
+		"/D/MBProject/SourceCode/shine-manager/shine-manager-web/manager-web/src/main/webapp/WEB-INF/js/views/management/integration_gateway/logger/logger.html",
+		"/D/MBProject/SourceCode/shine-manager/shine-manager-web/manager-web/src/main/webapp/WEB-INF/js/views/management/integration_gateway/monitoring_data/monitoring_data_details-controller.js",
+		"/F/Angular1/angular-datatables-master/angular-datatables-master/data.json",
+		"/D/MBProject/SourceCode/shine-manager/shine-manager-web/manager-web/src/main/webapp/WEB-INF/js/services/angular-datatables-service.js",
+		"/D/MBProject/SourceCode/shine-manager/shine-manager-web/manager-web/src/main/webapp/WEB-INF/config.JSON",
+		"/C/Users/Liu.Dun/Desktop/monitor连接server密码.txt",
+		"/C/Users/Liu.Dun/AppData/Roaming/Sublime Text 3/Packages/User/SublimeSimpleSync.sublime-settings",
+		"/D/vico/trunk/PRO/Liu.Dun/SourceCode/license/src/main/webapp/js/addhospital.js",
+		"/F/Angular2/angular-tour-of heroes/tsconfig.json",
+		"/F/Angular2/angular-tour-of heroes/app/hero-detail.component.js",
+		"/F/Angular2/angular-tour-of heroes/app/hero.service.js",
+		"/F/Angular2/angular-tour-of heroes/start.bat",
+		"/C/Users/Liu.Dun/AppData/Roaming/Sublime Text 3/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
+		"/C/Users/Liu.Dun/Desktop/posts.component.ts",
+		"/C/Users/Liu.Dun/Desktop/resource.service.ts",
+		"/F/Angular2/angular-tour-of heroes/app/hero.ts",
+		"/C/Users/Liu.Dun/Desktop/config.properties",
+		"/F/Angular2/angular-tour-of heroes/start.txt",
+		"/F/Angular2/angular-tour-of heroes/app/app.component.ts",
+		"/F/Angular2/angular-tour-of heroes/app/app-routing.module.ts",
+		"/F/Angular2/angular-tour-of heroes/app/app.module.ts",
+		"/F/Angular2/angular-tour-of heroes/app/dashboard.component.html",
+		"/F/Angular2/angular-tour-of heroes/heros.sublime-project",
+		"/F/Angular2/angular-tour-of heroes/app/hero-detail.component.css",
+		"/F/Angular2/angular-tour-of heroes/app/dashboard.component.ts",
+		"/D/MBProject/SourceCode/shine-gateway/monitor/conf/gateway.info",
+		"/D/MBProject/SourceCode/shine-gateway/server/appdata/gateway.info",
+		"/C/Users/Liu.Dun/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/D/tools source/ssh/ssh2_config",
+		"/C/Users/Liu.Dun/Application Data/SSH/temp/log4j-monitor (1).properties",
+		"/C/Users/Liu.Dun/Application Data/SSH/temp/log4j-monitor.properties",
+		"/C/Users/Liu.Dun/Application Data/SSH/log4j-monitor.properties",
+		"/D/shine-gateway/server/appdata/mirthdb/service.properties",
+		"/C/Users/Liu.Dun/Desktop/HttpsListener.form",
+		"/C/Users/Liu.Dun/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Liu.Dun/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/D/vico/trunk/PRO/Liu.Dun/SourceCode/license/src/main/webapp/My97DatePicker/calendar.js",
+		"/D/vico/trunk/PRO/Liu.Dun/SourceCode/license/src/main/webapp/js/createcode.js",
+		"/D/vico/trunk/PRO/Liu.Dun/SourceCode/license/src/main/webapp/js/hospital.js",
+		"/D/vico/trunk/PRO/Liu.Dun/SourceCode/license/src/main/webapp/css/frame/960.css",
+		"/D/vico/trunk/PRO/Liu.Dun/SourceCode/license/src/main/webapp/js/pagination.js",
+		"/C/Users/Liu.Dun/Desktop/pagination-master/pagination-master/js/index.js",
+		"/D/vico/trunk/PRO/Liu.Dun/SourceCode/license/src/main/webapp/css/pagination.css",
+		"/C/Users/Liu.Dun/Desktop/drug-manage/src/main/webapp/js/ajax.js",
+		"/C/Users/Liu.Dun/Desktop/pagination-master/pagination-master/dist/pagination.js",
+		"/C/Users/Liu.Dun/Desktop/pagination-master/pagination-master/js/data.js",
+		"/F/证书管理系统/10套精美的后台管理系统网站模版/10套精美的后台管理系统网站模版/ThePixelDeveloper-admin-template-4c710c8/ThePixelDeveloper-admin-template-4c710c8/css/colour.css",
+		"/F/证书管理系统/10套精美的后台管理系统网站模版/10套精美的后台管理系统网站模版/spring_time_free_standard/html/css/style.css",
+		"/F/证书管理系统/10套精美的后台管理系统网站模版/10套精美的后台管理系统网站模版/admin-panel-template-html-css/css/all.css",
+		"/D/vico/trunk/Development/MBProject/SourceCode/shine-manager/shine-manager-api/manager-service/src/main/resources/spring/spring-mybatis.xml",
+		"/D/vico/trunk/Development/MBProject/SourceCode/shine-manager/shine-manager-api/manager-service/src/main/resources/spring/service-context.xml",
+		"/D/vico/trunk/Development/MBProject/SourceCode/shine-manager/shine-manager-api/manager-rest/src/main/java/com/vico/shine/rest/CustomJarResourceController.java",
+		"/D/vico/trunk/PRO/Liu.Dun/SourceCode/license/resources/jdbc.properties",
+		"/D/vico/trunk/PRO/Liu.Dun/SourceCode/license/src/resources/jdbc.properties",
+		"/D/vico/trunk/Development/MBProject/SourceCode/shine-manager/shine-manager-api/manager-service/src/main/resources/log4j.properties",
+		"/D/vico/trunk/PRO/Liu.Dun/SourceCode/license/src/main/webapp/WEB-INF/pages/addhospital.html",
+		"/F/证书管理系统/网站外观/表单展示页面/jquery-1.9.0.min.js",
+		"/D/vico/trunk/PRO/Liu.Dun/SourceCode/license/src/main/webapp/WEB-INF/pages/createcode.html",
+		"/C/Users/Liu.Dun/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/C/Users/Liu.Dun/AppData/Roaming/Sublime Text 3/Packages/User/View In Browser.sublime-settings",
+		"/F/证书管理系统/网站外观/表单展示页面/表单.html",
+		"/F/证书管理系统/网站外观/表单展示页面/tables.html",
+		"/D/tools source/jquery-1.9.0.min.js",
+		"/D/tools source/My97DatePickerBeta/My97DatePicker/WdatePicker.js",
+		"/D/tools source/My97DatePickerBeta/My97DatePicker/calendar.js",
+		"/C/Users/Liu.Dun/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/C/Users/Liu.Dun/Desktop/新建文件夹/My97DatePicker/skin/whyGreen/datepicker.css",
+		"/C/Users/Liu.Dun/Desktop/新建文件夹/My97DatePicker/skin/WdatePicker.css",
+		"/C/Users/Liu.Dun/Desktop/新建文件夹/My97DatePicker/calendar.js",
+		"/C/Users/Liu.Dun/Desktop/新建文件夹/My97DatePicker/WdatePicker.js",
+		"/D/vico/trunk/PRO/Liu.Dun/SourceCode/license/src/main/webapp/WEB-INF/pages/My97DatePicker/WdatePicker.js",
+		"/D/vico/trunk/PRO/Liu.Dun/SourceCode/license/src/main/resources/js/licence.js",
+		"/D/vico/trunk/PRO/Liu.Dun/SourceCode/license/src/main/webapp/index.html",
+		"/C/Users/Liu.Dun/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/F/LiudProject/spring/src/main/webapp/WEB-INF/jsps/login.jsp",
+		"/C/Users/Liu.Dun/AppData/Roaming/Sublime Text 3/Packages/User/Emmet.sublime-settings",
+		"/C/Users/Liu.Dun/AppData/Roaming/Sublime Text 3/Packages/User/Base File.sublime-settings",
+		"/D/tools source/apache-tomcat-8.0.33-windows-x64/apache-tomcat-8.0.33/webapps/license/index.jsp",
+		"/F/LiudProject/spring/src/main/webapp/WEB-INF/jsps/listusers.jsp",
+		"/F/证书管理系统/SBadmin网站模板/css/sb-admin.css",
+		"/F/证书管理系统/SBadmin网站模板/head+left.html",
+		"/F/证书管理系统/SBadmin网站模板/forms.html",
+		"/C/Users/Liu.Dun/Desktop/windows工具/1.html",
+		"/C/Users/Liu.Dun/AppData/Roaming/Sublime Text 3/Packages/User/firefox.sublime-build",
+		"/F/证书管理系统/SBadmin网站模板/tables.html",
+		"/F/证书管理系统/startbootstrap-sb-admin-1.0.4/startbootstrap-sb-admin-1.0.4/bootstrap-grid.html",
+		"/F/证书管理系统/startbootstrap-sb-admin-1.0.4/startbootstrap-sb-admin-1.0.4/blank-page.html",
+		"/F/证书管理系统/startbootstrap-sb-admin-1.0.4/startbootstrap-sb-admin-1.0.4/css/bootstrap.css",
+		"/F/证书管理系统/startbootstrap-sb-admin-1.0.4/startbootstrap-sb-admin-1.0.4/css/sb-admin.css"
+	],
+	"find":
+	{
+		"height": 42.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"\\",
+			",",
+			"c",
+			"contextPathLabel",
+			"Base Context Path:",
+			"receiveTimeoutField",
+			"grid_17",
+			"height",
+			"grid_17",
+			"grid+17",
+			"createDay",
+			"object",
+			"receiverList",
+			"pagesize",
+			"div",
+			"grid_16",
+			"table",
+			"tr",
+			">\n",
+			"		 		\n",
+			"		\n",
+			"		 		\n",
+			"		\n",
+			"wrapper"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"incremental_find":
+	{
+		"height": 32.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.doc":
+	{
+		"height": 0.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Java/JavaC.sublime-build",
+	"replace":
+	{
+		"height": 60.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"hero-de",
+				"F:\\Angular2\\angular-tour-of heroes\\app\\hero-detail.component.css"
+			],
+			[
+				"hero",
+				"heros.sublime-project"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 405.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

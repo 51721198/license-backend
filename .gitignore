@@ -9,6 +9,7 @@ bin-release/
 .settings/
 
 /target/
+.idea
 
 # Executables
 *.swf
