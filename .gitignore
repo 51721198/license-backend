@@ -10,6 +10,7 @@ bin-release/
 
 /target/
 .idea
+hosts.properties
 
 # Executables
 *.swf
