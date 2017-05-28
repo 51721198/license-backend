@@ -9,11 +9,13 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
+    <context:property-placeholder location="classpath:redis.properties" />
+
     <!-- 定义consumer的参数,这个构造方法必须指定,否则spring启动会报错 -->
     <bean id="consumerProperties" class="java.util.HashMap">
         <constructor-arg>
             <map>
-                <entry key="bootstrap.servers" value="10.4.226.212:2181"/>
+                <entry key="bootstrap.servers" value="${kafka.host}"/>
                 <entry key="group.id" value="0"/>
                 <entry key="enable.auto.commit" value="true"/>
                 <entry key="auto.commit.interval.ms" value="1000"/>
