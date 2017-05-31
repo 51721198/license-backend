@@ -31,6 +31,7 @@
         select
         <include refid="Base_Column_List"/>
         from user
+        ORDER BY id
         limit #{start,jdbcType=INTEGER},#{length,jdbcType=INTEGER}
     </select>
 

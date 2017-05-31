@@ -1,6 +1,6 @@
 package com.vico.license.aop;
 
-import com.github.pagehelper.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -21,7 +21,7 @@ public class DefaultTokenManager implements TokenManager {
 
     @Override
     public boolean checkToken(String token) {
-        return !StringUtil.isEmpty(token) && tokenMap.containsKey(token);  //检查令牌容器中是否存在该令牌
+        return StringUtils.isNotEmpty(token) && tokenMap.containsKey(token);  //检查令牌容器中是否存在该令牌
     }
 
 }

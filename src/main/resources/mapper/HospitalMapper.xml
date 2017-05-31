@@ -30,6 +30,7 @@
         select
         <include refid="Base_Column_List"/>
         from license_hospital
+        order by hospital_number
         limit #{start,jdbcType=INTEGER},#{length,jdbcType=INTEGER}
     </select>
 

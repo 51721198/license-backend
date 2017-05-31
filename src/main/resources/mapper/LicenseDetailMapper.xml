@@ -66,6 +66,7 @@
         h.hospital_number, h.hospital_name, h.hospital_phone, h.hospital_address
         from license_detail as l inner join license_hospital as h
         on l.hospital_number = h.hospital_number
+        order by l.serial_number_id
         limit #{start,jdbcType=INTEGER},#{length,jdbcType=INTEGER}
     </select>
 
@@ -77,6 +78,7 @@
         h.hospital_number, h.hospital_name, h.hospital_phone, h.hospital_address
         from license_detail as l inner join license_hospital as h
         on l.hospital_number = h.hospital_number
+        order by l.serial_number_id
     </select>
 
 
@@ -97,14 +99,24 @@
     </delete>
 
     <insert id="insertLicenseDetail" parameterType="com.vico.license.pojo.LicenseDetail">
-        insert into license_detail (serial_number_id, source_number,
+        insert into license_detail (
+        serial_number_id,
+        source_number,
         create_date,
-        expired_date, encrypted_number,
-        hospital_number,license_state,key_id)
-        values (#{serialNumberId,jdbcType=INTEGER},
-        #{sourceNumber,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE},
-        #{expiredDate,jdbcType=DATE}, #{encryptedNumber,jdbcType=VARCHAR},
-        #{hospitalNumber,jdbcType=INTEGER},#{licenseState,jdbcType=INTEGER},#{keyId,jdbcType=INTEGER})
+        expired_date,
+        encrypted_number,
+        hospital_number,
+        license_state,
+        key_id)
+        values (
+        #{serialNumberId,jdbcType=INTEGER},
+        #{sourceNumber,jdbcType=VARCHAR},
+        #{createDate,jdbcType=DATE},
+        #{expiredDate,jdbcType=DATE},
+        #{encryptedNumber,jdbcType=VARCHAR},
+        #{hospitalNumber,jdbcType=INTEGER},
+        #{licenseState,jdbcType=INTEGER},
+        #{keyId,jdbcType=INTEGER})
     </insert>
 
     <update id="updateByPrimaryKey" parameterType="com.vico.license.pojo.LicenseDetail">

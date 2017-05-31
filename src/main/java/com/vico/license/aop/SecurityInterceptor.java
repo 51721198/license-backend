@@ -1,6 +1,6 @@
 package com.vico.license.aop;
 
-import com.github.pagehelper.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -28,7 +28,7 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter {
     }
 
     public void setTokenName(String tokenName) {
-        if (StringUtil.isEmpty(tokenName)) {
+        if (StringUtils.isEmpty(tokenName)) {
             tokenName = DEFAULT_TOKEN_NAME;
         }
         this.tokenName = tokenName;

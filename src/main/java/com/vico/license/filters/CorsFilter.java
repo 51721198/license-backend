@@ -1,8 +1,14 @@
 package com.vico.license.filters;
 
-import com.github.pagehelper.StringUtil;
 
-import javax.servlet.*;
+import org.apache.commons.lang3.StringUtils;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -32,9 +38,9 @@ public class CorsFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;       //将servletRequest强制转换为httpServletRequest
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        if (StringUtil.isNotEmpty(allowOrigin)) {
+        if (StringUtils.isNotEmpty(allowOrigin)) {
             List<String> allowOriginList = Arrays.asList(allowOrigin.split(","));   //允许的客户端域名放入一个列表中,以逗号分隔,破解不允许指定多个域名的限制
-            if (allowOriginList != null) {
+            if (allowOriginList.size() != 0) {
                 String currentOrigin = request.getHeader("Origin");
                 if (allowOriginList.contains(currentOrigin)) {  //如果请求的域名在允许列表当中,那就给请求加一个跨域的请求头
                     System.out.println("cros can here!!!!!!!!");
@@ -43,16 +49,16 @@ public class CorsFilter implements Filter {
                 }
             }
         }
-        if (StringUtil.isNotEmpty(allowMethods)) {
+        if (StringUtils.isNotEmpty(allowMethods)) {
             response.setHeader("Access-Control-Allow-Methods", allowMethods);
         }
-        if (StringUtil.isNotEmpty(allowCredentials)) {
+        if (StringUtils.isNotEmpty(allowCredentials)) {
             response.setHeader("Access-Control-Allow-Credentials", allowCredentials);
         }
-        if (StringUtil.isNotEmpty(allowHeaders)) {
+        if (StringUtils.isNotEmpty(allowHeaders)) {
             response.setHeader("Access-Control-Allow-Headers", allowHeaders);
         }
-        if (StringUtil.isNotEmpty(exposeHeaders)) {
+        if (StringUtils.isNotEmpty(exposeHeaders)) {
             response.setHeader("Access-Control-Expose-Headers", exposeHeaders);
         }
         chain.doFilter(request, response);

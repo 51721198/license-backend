@@ -1,6 +1,6 @@
 package com.vico.license.aop;
 
-import com.github.pagehelper.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -30,7 +30,7 @@ public class SecurityAspect {
     }
 
     public void setTokenName(String tokenName) {
-        if (StringUtil.isEmpty(tokenName)) tokenName = DEFAULT_TOKEN_NAME;
+        if (StringUtils.isEmpty(tokenName)) tokenName = DEFAULT_TOKEN_NAME;
         this.tokenName = tokenName;
     }
 
