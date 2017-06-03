@@ -9,7 +9,7 @@ import com.vico.license.service.HospitalService;
 import com.vico.license.service.LicenseService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.Errors;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,7 +47,7 @@ public class HospitalController {
             processResult.setResultdesc(ProcessResultEnum.SELECT_SUCCESS);
             processResult.setResultobject(list);
         } catch (Exception e) {
-            logger.error(ProcessResultEnum.SELECT_ERROR + ProcessResultEnum.getClassPath());
+            logger.error(ProcessResultEnum.SELECT_ERROR + e);
         }
         return processResult;
     }
@@ -67,7 +67,7 @@ public class HospitalController {
                 result = hospitalservice.getHospitalByPage(draw, start, length);
             }
         } catch (Exception e) {
-            logger.error(ProcessResultEnum.SELECT_ERROR + ProcessResultEnum.getClassPath());
+            logger.error(ProcessResultEnum.SELECT_ERROR + e);
         }
         return result;
     }
@@ -130,14 +130,15 @@ public class HospitalController {
      * @Description: 根据hospitalNumber的值是否存在判断是添加还是修改
      */
     @RequestMapping(value = "addhospital")
-    public ModelAndView addHospital(@Valid Hospital hospital, Errors error) {
+    public ModelAndView addHospital(@Valid Hospital hospital, BindingResult result) {
         /**
          * 后台非空判断,假如输入的医院编号和名称为空,则返回原页面
          */
-        if (error.hasErrors()) {
+        if (result.hasErrors()) {
             ModelAndView mv = new ModelAndView("redirect:/bounceController/toaddhospital");
             return mv;
         }
+
         try {
             if (hospital.getHospitalNumber() == null) {
                 int i = hospitalservice.addHospital(hospital);

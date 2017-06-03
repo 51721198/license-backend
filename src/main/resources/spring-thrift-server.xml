@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <!-- zookeeper -->
+    <!--<bean id="thriftZookeeper" class="com.demo.thrift.zookeeper.ZookeeperFactory" destroy-method="close">-->
+        <!--<property name="connectString" value="127.0.0.1:2181"></property>-->
+        <!--<property name="namespace" value="demo/thrift-service"></property>-->
+    <!--</bean>-->
+
+
+    <!--<bean id="sericeAddressReporter" class="com.demo.thrift.support.impl.DynamicAddressReporter" destroy-method="close">-->
+        <!--<property name="zookeeper" ref="thriftZookeeper"></property>-->
+    <!--</bean>-->
+
+    <!--server实现类 -->
+    <bean id="helloWorldServiceImp" class="com.vico.license.service.Impl.HelloWorldServiceImp"/>
+
+    <bean class="com.vico.license.rpc.ThriftServiceServerFactory">
+        <property name="serviceIface" value="com.vico.license.service.HelloWorldService"></property>
+        <property name="serviceImpl" ref="helloWorldServiceImp"></property>
+        <property name="port" value="9090"></property>
+        <!--<property name="addressReporter" ref="sericeAddressReporter"></property>-->
+    </bean>
+
+</beans>

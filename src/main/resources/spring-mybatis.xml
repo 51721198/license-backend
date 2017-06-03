@@ -51,6 +51,7 @@
         <property name="filters" value="mergeStat"/>
     </bean>
 
+
     <!--<jaxws:client id="webServiceBean" serviceClass="com.ld.wsdl.server.WebService001"-->
                   <!--address="http://localhost:8888/webService/test" />-->
 
@@ -69,7 +70,7 @@
     </bean>
 
     <!-- validation配置,用于对象字段非空验证 -->
-    <bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>
+    <!--<bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>-->
 
     <!-- 
     <aop:config>

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,7 +18,10 @@ public class HospitalServiceImp implements HospitalService {
     private HospitalDao hospitaldao;
 
     @Override
+//    @PreAuthorize("hasRole(admin)")
     public List<Hospital> showAllHospitals() {
+
+        System.out.println("can heere");
 
         List<Hospital> list = hospitaldao.showAll();
         return list;
@@ -83,14 +85,17 @@ public class HospitalServiceImp implements HospitalService {
     }
 
     @Override
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")    //权限验证,需要前端每次请求附带用户信息,否则不能做
+//    @PreFilter("hasPermission()")
     public DatatableModel getHospitalByPage(Integer draw, Integer start, Integer length) {
+
+        System.out.println("hehre1112283291832321839dsadsada1");
         DatatableModel model = new DatatableModel();
         Integer recordsTotal = 0;
         Integer recordsFiltered = 0;
         try {
             model.setDraw(draw);
-            List<Hospital> list = new ArrayList<>();
-            list = hospitaldao.selectAllHospitalsByPage(start, length);
+            List<Hospital> list = hospitaldao.selectAllHospitalsByPage(start, length);
             recordsTotal = hospitaldao.selectCountHospitals();
             recordsFiltered = recordsTotal;
             model.setData(list);
