@@ -14,6 +14,8 @@ import java.util.List;
 @Transactional(rollbackFor = Exception.class)
 public class HospitalServiceImp implements HospitalService {
 
+
+
     @Autowired
     private HospitalDao hospitaldao;
 
@@ -89,7 +91,6 @@ public class HospitalServiceImp implements HospitalService {
 //    @PreFilter("hasPermission()")
     public DatatableModel getHospitalByPage(Integer draw, Integer start, Integer length) {
 
-        System.out.println("hehre1112283291832321839dsadsada1");
         DatatableModel model = new DatatableModel();
         Integer recordsTotal = 0;
         Integer recordsFiltered = 0;

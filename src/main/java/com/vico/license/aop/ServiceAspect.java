@@ -4,6 +4,8 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,16 +14,13 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class ServiceAspect {
-
-    public ServiceAspect(){
-        System.out.println(">>>>>>>>>>");
-    }
+    public static final Logger LOGGER = LoggerFactory.getLogger(ServiceAspect.class);
 
     @Pointcut("execution(* com.vico.license.service.*.*.*(..))")
     public void cutService(){}
 
     @Before("cutService()")
     public void printAop(JoinPoint point){
-        System.out.println("AOP 拦截 service 调用!!!");
+        LOGGER.info("AOP 拦截 service 调用!!!");
     }
 }

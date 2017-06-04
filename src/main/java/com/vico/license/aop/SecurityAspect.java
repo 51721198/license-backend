@@ -8,6 +8,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +23,7 @@ import java.lang.reflect.Method;
 @Aspect
 @Component
 public class SecurityAspect {
+    public static final Logger LOGGER = LoggerFactory.getLogger(ServiceAspect.class);
     private static final String DEFAULT_TOKEN_NAME = "X-Token";
 
     @Autowired
@@ -44,15 +47,13 @@ public class SecurityAspect {
 //    @Before("needAnnotation()")
     @Before("cutMethodRequest()")
     public void before(JoinPoint joinPoint) throws Throwable {    //Before型通知只能用JoinPoint,不能用ProceedingJoinPoint
-        System.out.println("=====SysLogAspect 前置通知开始=====");
     }
 
 
     //只有添加了@needAnnotation注解的contorller中的方法才会被拦截
     @Around("needAnnotation() && cutMethodRequest()")
     public Object execute(ProceedingJoinPoint pjp) throws Throwable {
-
-        System.out.println("=====SysLogAspect 环绕通知开始=====");
+        LOGGER.info("=====token安全验证!!!=====");
         //从切点上面获取目标方法
         MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
         Method method = methodSignature.getMethod();
@@ -65,11 +66,11 @@ public class SecurityAspect {
         //从request header中获取当前token
         System.out.println(WebContext.getRequest());
         if (StringUtils.isBlank(tokenName)) tokenName = DEFAULT_TOKEN_NAME;
-        String token = WebContext.getRequest().getHeader(tokenName);  //本行出错,空指针
-        System.out.println(token);
+        String token = WebContext.getRequest().getHeader(tokenName);
 
         //检查token的有效性
         if (!tokenManager.checkToken(token)) {
+            LOGGER.warn("=====token验证失败=====");
             String message = String.format("token [%s] is invalid", token);
             throw new TokenException(message);
         }
