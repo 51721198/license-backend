@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -250,7 +251,7 @@ public class LicenseController {
      * 后端非空判断采用javax.validation,防止前端js非空判断失效
      */
     @RequestMapping(value = "savecode", method = RequestMethod.POST)
-    public ProcessResult saveCode( @Valid LicenseDetail licensedetail, BindingResult bindingResult) {
+    public ProcessResult saveCode(@Valid @RequestBody LicenseDetail licensedetail, BindingResult bindingResult) {
         ProcessResult processResult = new ProcessResult();
         /**
          * 非空判断,假如传入信息出现了空值,则返回生成序列号页面

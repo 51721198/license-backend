@@ -14,15 +14,14 @@ import java.sql.Date;
  */
 @Component
 public class LicenseDetail {
-    @NotNull(message = "bunengkong1")
     private Integer serialNumberId;
 
     @NotBlank(message = "sourceNumber不能为空")
     private String sourceNumber;
 
-    @NotNull(message = "uenudnsiaj11")
     private Date createDate;
 
+    @NotNull
     private Date expiredDate;
 
     @NotBlank(message = "encryptedNumber不能为空")
@@ -31,7 +30,6 @@ public class LicenseDetail {
     @NotNull(message = "hospitalNumber不能为空")
     private Integer hospitalNumber;
 
-    @NotNull(message = "state不能空")
     private Integer licenseState;
 
     /**
