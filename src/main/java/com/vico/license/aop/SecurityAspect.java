@@ -8,6 +8,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -20,19 +21,12 @@ import java.lang.reflect.Method;
 @Aspect
 @Component
 public class SecurityAspect {
-    private static final String DEFAULT_TOKEN_NAME = "X-TOKEN";
+    private static final String DEFAULT_TOKEN_NAME = "X-Token";
 
+    @Autowired
     private TokenManager tokenManager;
+
     private String tokenName;
-
-    public void setTokenManager(TokenManager tokenManager) {
-        this.tokenManager = tokenManager;
-    }
-
-    public void setTokenName(String tokenName) {
-        if (StringUtils.isEmpty(tokenName)) tokenName = DEFAULT_TOKEN_NAME;
-        this.tokenName = tokenName;
-    }
 
     //这个切点只拦截带有@NeedCheck注解的方法
     @Pointcut("@annotation(com.vico.license.aop.NeedCheck)")
@@ -53,6 +47,7 @@ public class SecurityAspect {
         System.out.println("=====SysLogAspect 前置通知开始=====");
     }
 
+
     //只有添加了@needAnnotation注解的contorller中的方法才会被拦截
     @Around("needAnnotation() && cutMethodRequest()")
     public Object execute(ProceedingJoinPoint pjp) throws Throwable {
@@ -69,6 +64,7 @@ public class SecurityAspect {
 
         //从request header中获取当前token
         System.out.println(WebContext.getRequest());
+        if (StringUtils.isBlank(tokenName)) tokenName = DEFAULT_TOKEN_NAME;
         String token = WebContext.getRequest().getHeader(tokenName);  //本行出错,空指针
         System.out.println(token);
 

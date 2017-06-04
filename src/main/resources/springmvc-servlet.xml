@@ -12,7 +12,7 @@
     <!-- 注解驱动 -->
     <mvc:annotation-driven/>
 
-    <!-- 开启AOP注解 -->
+    <!-- 开启AOP注解 不加这个注解前端控制器的AOP无法生效,虽然在总spring中已经加了这个,实际实验已验证!!!-->
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
     <mvc:resources location="/My97DatePicker/" mapping="/My97DatePicker/**"></mvc:resources>
@@ -26,12 +26,12 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
     </context:component-scan>
 
-    <!-- aop 所用的bean 及aop相关配置 -->
-    <bean id="tokenManager" class="com.vico.license.aop.DefaultTokenManager"/>
-    <bean id="securityAspect" class="com.vico.license.aop.SecurityAspect">
-        <property name="tokenManager" ref="tokenManager"/>
-        <property name="tokenName" value="X-Token"/>
-    </bean>
+    <!-- aop 所用的bean 及aop相关配置,作用与controller中的aop必须在这个context中进行声明,否则无效,这里使用了@component注解因此不用再配置-->
+    <!--<bean id="tokenManager" class="com.vico.license.aop.DefaultTokenManager"/>-->
+    <!--<bean id="securityAspect" class="com.vico.license.aop.SecurityAspect">-->
+        <!--<property name="tokenManager" ref="tokenManager"/>-->
+        <!--<property name="tokenName" value="X-Token"/>-->
+    <!--</bean>-->
 
 
     <!-- 视图选择器 -->

@@ -10,6 +10,7 @@ import org.apache.thrift.TException;
 public class HelloWorldServiceImp implements HelloWorldService.Iface {
     @Override
     public Person sayHello(String name) throws TException {
+        System.out.println("thrift 接口被调用!!!!");
         Person person = new Person();
         person.setUserName(name);
         person.setUserPhone(738217);

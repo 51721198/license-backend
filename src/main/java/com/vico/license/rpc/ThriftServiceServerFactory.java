@@ -8,6 +8,7 @@ import org.apache.thrift.transport.TServerSocket;
 import org.apache.thrift.transport.TTransportException;
 import org.springframework.beans.factory.InitializingBean;
 
+import javax.annotation.PostConstruct;
 import java.lang.reflect.Constructor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -17,7 +18,6 @@ import java.util.concurrent.Executors;
  */
 
 public class ThriftServiceServerFactory implements InitializingBean {
-
 
     private Integer port;
 
@@ -73,9 +73,28 @@ public class ThriftServiceServerFactory implements InitializingBean {
         this.configPath = configPath;
     }
 
+    ThriftServiceServerFactory(){
+        System.out.println("构造方法执行!!!!!!!!!");
+    }
+
+    @PostConstruct
+    public void postConstruct(){
+        System.out.println("postConstruct方法执行!!!!!");
+    }
+
+    public void init(){
+        System.out.println("init()方法被执行!!!!!!");
+    }
+
+    public void destory(){
+        System.out.println("destory()方法被执行!!!!!!");
+    }
+
     @Override
     public void afterPropertiesSet() throws Exception {
+        System.out.println("afterPropertiesSet方法执行!!!!!!");
          // processor = 服务端接口名 + $Processor;
+        //forName方法用来根据名称获取类,并不会生成实例对象,加了$后获取的是内部类
         Class Processor = Class.forName(serviceIface.getName() + "$Processor");
 
         // 接口iface = 服务端接口名 + $Iface;

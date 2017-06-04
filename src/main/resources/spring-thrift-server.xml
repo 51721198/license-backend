@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	   http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-    <!-- zookeeper -->
+    <!-- 与zookeeper集成,后续会考虑实现这个功能!! -->
     <!--<bean id="thriftZookeeper" class="com.demo.thrift.zookeeper.ZookeeperFactory" destroy-method="close">-->
         <!--<property name="connectString" value="127.0.0.1:2181"></property>-->
         <!--<property name="namespace" value="demo/thrift-service"></property>-->
@@ -18,7 +18,9 @@
     <!--server实现类 -->
     <bean id="helloWorldServiceImp" class="com.vico.license.service.Impl.HelloWorldServiceImp"/>
 
-    <bean class="com.vico.license.rpc.ThriftServiceServerFactory">
+    <!--注意:ThriftServiceServerFactory是个通用类,传什么接口进去都可以 -->
+    <!--这里给工厂传了helloWorldService,因此这个thrift就只能处理这个接口的业务,传别的接口就可以实现别的业务 -->
+    <bean id="helloWorldService" class="com.vico.license.rpc.ThriftServiceServerFactory" init-method="init" destroy-method="destory">
         <property name="serviceIface" value="com.vico.license.service.HelloWorldService"></property>
         <property name="serviceImpl" ref="helloWorldServiceImp"></property>
         <property name="port" value="9090"></property>
