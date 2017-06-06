@@ -1,7 +1,5 @@
 package com.vico.license.filters;
 
-import com.vico.license.aop.WebContext;
-
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

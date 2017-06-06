@@ -31,7 +31,7 @@ public class BounceController {
     @ResponseBody
     public String defaultPage(){
         ProcessResult result = new ProcessResult();
-        result.setResultdesc(env.getProperty("master") + " : " + env.getProperty("masterpass"));
+        result.setResultdesc(env.getProperty("master") + " : " + env.getProperty("masterpass")+ "   111 测试页面");
         return JSON.toJSONString(result);
     }
 

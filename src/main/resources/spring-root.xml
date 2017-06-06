@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:soap="http://cxf.apache.org/bindings/soap"
+       xsi:schemaLocation=
+               "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	                        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+	                        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+	                        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+                            http://cxf.apache.org/jaxws
+                            http://cxf.apache.org/schemas/jaxws.xsd"
+       default-lazy-init="false">
+
+    <context:annotation-config/>
+
+    <!-- 在spring总容器中必须对aop进行声明,前端控制器里面的aop声明只能管到前端控制器,也就是controller中的Aop-->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <context:property-placeholder location="classpath:*.properties" ignore-unresolvable="true"/>
+
+    <!-- 排除所有非root-spingcontext的类,比如这里排除的就是springMVC的context加载的类,防止controller重复加载 -->
+    <context:component-scan base-package="com.vico.license">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+        <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+    </context:component-scan>
+
+    <!-- 以下几个是用来配置spring task定时任务的-->
+    <task:executor id="executor" pool-size="5"/>
+    <task:scheduler id="scheduler" pool-size="10"/>
+    <task:annotation-driven executor="executor" scheduler="scheduler"/>
+
+
+    <!-- validation配置,用于对象字段非空验证 -->
+    <!--<bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>-->
+
+    <!--   前端控制器中的AOP只能声明在前端控制器的context文件中,声明在这个spring总容器中是没有效果的
+    <aop:config>
+    	<aop:aspect ref="securityAspect">
+    		<aop:around method="execute" pointcut="@annotation(org.springframework.web.bind.annotation.RequestMapping)"/>
+    	</aop:aspect>
+    </aop:config>
+     -->
+
+</beans>

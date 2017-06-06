@@ -9,11 +9,10 @@
         <!--<property name="connectString" value="127.0.0.1:2181"></property>-->
         <!--<property name="namespace" value="demo/thrift-service"></property>-->
     <!--</bean>-->
-
-
     <!--<bean id="sericeAddressReporter" class="com.demo.thrift.support.impl.DynamicAddressReporter" destroy-method="close">-->
         <!--<property name="zookeeper" ref="thriftZookeeper"></property>-->
     <!--</bean>-->
+
 
     <!--server实现类 -->
     <bean id="helloWorldServiceImp" class="com.vico.license.service.Impl.HelloWorldServiceImp"/>
