@@ -2,9 +2,10 @@ package com.vico.license.dao.test;
 
 import com.vico.license.dao.HospitalDao;
 import com.vico.license.pojo.Hospital;
-import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -15,7 +16,7 @@ import java.util.List;
 @ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 public class HospitalDaoTest {
 
-    private static final Logger logger = Logger.getLogger(UserDaoTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserDaoTest.class);
     @Autowired
     HospitalDao hospitalDao;
 
@@ -23,12 +24,12 @@ public class HospitalDaoTest {
     public void testSelectAllHospitalsByPage() {
         List<Hospital> list = hospitalDao.selectAllHospitalsByPage(2, 8);
         for (Hospital hospital : list) {
-            logger.info(">>: " + hospital);
+            LOGGER.info(">>: " + hospital);
         }
     }
 
     @Test
     public void testSelectCountHospitals() {
-        logger.info("***********" + hospitalDao.selectCountHospitals());
+        LOGGER.info("***********" + hospitalDao.selectCountHospitals());
     }
 }

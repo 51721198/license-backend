@@ -1,9 +1,10 @@
 package com.vico.license.service.test;
 
 import com.vico.license.service.LicenseService;
-import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -14,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class LicenseServiceImpTest {
 
 
-    private static final Logger logger = Logger.getLogger(LicenseServiceImpTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LicenseServiceImpTest.class);
     @Autowired
     private LicenseService lsi;
 

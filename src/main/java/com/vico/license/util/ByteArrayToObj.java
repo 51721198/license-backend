@@ -1,12 +1,13 @@
 package com.vico.license.util;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
 
 public class ByteArrayToObj {
-    private static final Logger logger = Logger.getLogger(ByteArrayToObj.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ByteArrayToObj.class);
 
     public static Object ByteToObject(byte[] bytes) {
         Object obj = null;
@@ -18,7 +19,7 @@ public class ByteArrayToObj {
             bi.close();
             oi.close();
         } catch (Exception e) {
-            logger.error(e);
+            LOGGER.error("exception:{}",e);
         }
         return obj;
     }

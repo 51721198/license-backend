@@ -9,7 +9,8 @@
 
 package com.vico.license.util;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.net.URI;
@@ -22,13 +23,13 @@ import java.net.URL;
  * @date: 2016年7月15日 下午2:52:39
  */
 public class ClassPathResourceURI {
-    private static Logger logger = Logger.getLogger(ClassPathResourceURI.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(ClassPathResourceURI.class);
 
     public static URI getResourceURI(String resource) {
         // If nothing found, null is returned
         URI uri = null;
         try {
-            logger.debug("Loading: " + resource);
+            LOGGER.debug("Loading: " + resource);
             URL url = ClassPathResourceURI.class.getResource(resource);
 
             // If nothing is found, try it with or without the '/' in front.
@@ -44,7 +45,7 @@ public class ClassPathResourceURI {
             if (url != null)
                 uri = url.toURI();
         } catch (Exception e) {
-            logger.error("Could not load resource.", e);
+            LOGGER.error("Could not load resource.", e);
         }
         return uri;
     }

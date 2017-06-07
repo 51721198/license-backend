@@ -2,6 +2,8 @@ package com.vico.license.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.vico.license.pojo.ProcessResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -23,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(value = "/")
 @PropertySource("classpath:hosts.properties")
 public class BounceController {
+    public static final Logger LOGGER = LoggerFactory.getLogger(BounceController.class);
 
     @Autowired
     private Environment env;

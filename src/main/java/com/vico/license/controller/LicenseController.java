@@ -9,7 +9,8 @@ import com.vico.license.pojo.RSAKey;
 import com.vico.license.service.LicenseService;
 import com.vico.license.util.ClassPathResourceURI;
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.validation.BindingResult;
@@ -40,7 +41,7 @@ import java.util.Map;
  */
 public class LicenseController {
 
-    private static final Logger logger = Logger.getLogger(LicenseController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LicenseController.class);
 
     @Autowired
     private LicenseService licenseService;
@@ -60,7 +61,7 @@ public class LicenseController {
                 processResult.setResultobject(codeMap);
             }
         } catch (Exception e) {
-            logger.error(ProcessResultEnum.CREATE_ERROR + ProcessResultEnum.getClassPath());
+            LOGGER.error(ProcessResultEnum.CREATE_ERROR + ProcessResultEnum.getClassPath());
         }
         return processResult;
     }
@@ -78,7 +79,7 @@ public class LicenseController {
             processResult.setResultmessage(encryptcode);
             processResult.setResultobject(rsakey.getKeyId());
         } catch (Exception e) {
-            logger.error(ProcessResultEnum.CREATE_ERROR + ProcessResultEnum.getClassPath());
+            LOGGER.error(ProcessResultEnum.CREATE_ERROR + ProcessResultEnum.getClassPath());
         }
         return processResult;
     }
@@ -101,7 +102,7 @@ public class LicenseController {
             processResult.setResultdesc(ProcessResultEnum.SELECT_SUCCESS);
             processResult.setResultobject(list);
         } catch (Exception e) {
-            logger.error(ProcessResultEnum.SELECT_ERROR + ProcessResultEnum.getClassPath());
+            LOGGER.error(ProcessResultEnum.SELECT_ERROR + ProcessResultEnum.getClassPath());
         }
         return processResult;
     }
@@ -155,7 +156,7 @@ public class LicenseController {
                 }
             }
         } catch (Exception e) {
-            logger.error(ProcessResultEnum.SELECT_ERROR + ProcessResultEnum.getClassPath());
+            LOGGER.error(ProcessResultEnum.SELECT_ERROR + ProcessResultEnum.getClassPath());
         }
         return processResult;
     }
@@ -177,7 +178,7 @@ public class LicenseController {
         String nameofzip = "license.zip";
         creatsucess = licenseService.createZIPFile(Integer.parseInt(serialNumberId));
         if (!creatsucess) {
-            logger.error("生成ZIP文件失败!");
+            LOGGER.error("生成ZIP文件失败!");
             return;
         }
 
@@ -188,7 +189,7 @@ public class LicenseController {
             IOUtils.copy(inputStream1, response.getOutputStream());
             response.flushBuffer();
         } catch (Exception e) {
-            logger.error(e);
+            LOGGER.error("exception:{}",e);
         }
 
         try {
@@ -201,7 +202,7 @@ public class LicenseController {
                 processResult.setResultdesc(ProcessResultEnum.MODIFY_FAIL);
             }
         } catch (Exception e) {
-            logger.error(ProcessResultEnum.MODIFY_ERROR + ProcessResultEnum.getClassPath());
+            LOGGER.error(ProcessResultEnum.MODIFY_ERROR + ProcessResultEnum.getClassPath());
         }
     }
 
@@ -213,7 +214,7 @@ public class LicenseController {
         String nameofzip = "license.zip";
         creatsucess = licenseService.createZIPFile(Integer.parseInt(serialNumberId));
         if (!creatsucess) {
-            logger.error("生成ZIP文件失败!");
+            LOGGER.error("生成ZIP文件失败!");
             return;
         }
 
@@ -224,7 +225,7 @@ public class LicenseController {
             IOUtils.copy(inputStream1, response.getOutputStream());
             response.flushBuffer();
         } catch (Exception e) {
-            logger.error(e);
+            LOGGER.error("exception{}",e);
         }
 
         try {
@@ -237,7 +238,7 @@ public class LicenseController {
                 processResult.setResultdesc(ProcessResultEnum.MODIFY_FAIL);
             }
         } catch (Exception e) {
-            logger.error(ProcessResultEnum.MODIFY_ERROR + ProcessResultEnum.getClassPath());
+            LOGGER.error(ProcessResultEnum.MODIFY_ERROR + ProcessResultEnum.getClassPath());
         }
     }
 
@@ -261,7 +262,7 @@ public class LicenseController {
         System.out.println(bindingResult.toString());
 
         if(bindingResult.hasFieldErrors()){
-            logger.error("序列号参数绑定异常:"+bindingResult.getFieldError().getDefaultMessage());
+            LOGGER.error("序列号参数绑定异常:"+bindingResult.getFieldError().getDefaultMessage());
             processResult.setResultdesc("参数绑定失败");
             return processResult;
         }
@@ -269,11 +270,11 @@ public class LicenseController {
         try {
             int i = licenseService.saveCode(licensedetail);
            if (i != 1){
-               logger.warn("序列号保存失败"+licensedetail.toString());
+               LOGGER.warn("序列号保存失败"+licensedetail.toString());
            }
         } catch (Exception e) {
-            logger.warn("序列号保存失败"+licensedetail.toString());
-            logger.error(ProcessResultEnum.INSERT_ERROR + ProcessResultEnum.getClassPath());
+            LOGGER.warn("序列号保存失败"+licensedetail.toString());
+            LOGGER.error(ProcessResultEnum.INSERT_ERROR + ProcessResultEnum.getClassPath());
             processResult.setResultdesc(ProcessResultEnum.CREATE_FAIL);
             return processResult;
         }

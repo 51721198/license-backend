@@ -1,6 +1,7 @@
 package com.vico.license.util;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,7 +12,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class ZIPFiles {
-    private static final Logger logger = Logger.getLogger(ZIPFiles.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ZIPFiles.class);
 
     public static boolean compatFiles() {
         boolean processflag = true;
@@ -39,7 +40,7 @@ public class ZIPFiles {
                 }
             }
         } catch (Exception e) {
-            logger.error(e + "生成ZIP出现问题!");
+            LOGGER.error("生成ZIP出现问题:{}",e);
             processflag = false;
             return processflag;
         } finally {
@@ -48,7 +49,7 @@ public class ZIPFiles {
                 fis.close();
                 out.close();
             } catch (IOException e) {
-                logger.error(e);
+                LOGGER.error("exception:{}",e);
             }
         }
         return processflag;

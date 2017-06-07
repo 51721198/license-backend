@@ -1,6 +1,7 @@
 package com.vico.license.util;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -8,7 +9,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 public class ObjToFile {
-    private static final Logger logger = Logger.getLogger(ObjToFile.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ObjToFile.class);
 
     public static boolean object2File(Object object) {
         boolean processflag = true;
@@ -19,14 +20,14 @@ public class ObjToFile {
             oos.writeObject(object);
             oos.flush();
         } catch (Exception e) {
-            logger.error(e + "生成私钥有问题!");
+            LOGGER.error(e + "生成私钥有问题!");
             processflag = false;
             return processflag;
         } finally {
             try {
                 oos.close();
             } catch (IOException e) {
-                logger.error(e);
+                LOGGER.error("exception:{}",e);
             }
         }
         return processflag;

@@ -2,7 +2,8 @@ package com.vico.license.util.rsa;
 
 import com.vico.license.util.FileNames;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.crypto.Cipher;
 import java.io.FileInputStream;
@@ -20,7 +21,7 @@ public class RSAdoDecrypt {
      * @throws Exception
      */
     private static final String ALGORITHM = "RSA";
-    private static final Logger logger = Logger.getLogger(RSAdoDecrypt.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RSAdoDecrypt.class);
 
     public static String decrypt(String cryptograph) throws Exception {
         Key privateKey;

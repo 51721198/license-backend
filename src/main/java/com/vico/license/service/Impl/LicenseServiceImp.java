@@ -16,7 +16,8 @@ import com.vico.license.util.ZIPFiles;
 import com.vico.license.util.rsa.RSACreateSourceCode;
 import com.vico.license.util.rsa.RSAKeyPair;
 import com.vico.license.util.rsa.RSAdoEncrypt;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +32,7 @@ import java.util.Map;
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class LicenseServiceImp implements LicenseService {
-    private static final Logger logger = Logger.getLogger(LicenseServiceImp.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LicenseServiceImp.class);
     @Autowired
     private LicenseDao licensedao;
 
@@ -84,7 +85,7 @@ public class LicenseServiceImp implements LicenseService {
             encryptcode = RSAdoEncrypt.encrypt(code, publickey); // RSA算法加密
 
         } catch (Exception e) {
-            logger.error(e);
+            LOGGER.error("exception:{}",e);
         }
         return encryptcode;
     }
@@ -190,7 +191,7 @@ public class LicenseServiceImp implements LicenseService {
             rsaKey.setPrivateKey(pri);
             rsaKey.setPublicKey(pub);
         } catch (Exception e) {
-            logger.error(e);
+            LOGGER.error("exception:{}",e);
         }
         try {
             i = rsakeydao.insertRSAKeyPair(rsaKey);

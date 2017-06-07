@@ -7,7 +7,8 @@ import com.vico.license.pojo.DataTableRequest;
 import com.vico.license.pojo.User;
 import com.vico.license.pojo.UserByPage;
 import com.vico.license.service.UserService;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -25,7 +26,7 @@ import java.util.Set;
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class UserServiceImp implements UserService {
-    private static final Logger logger = Logger.getLogger(UserServiceImp.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImp.class);
     @Autowired
     private UserDao userDao;
 
@@ -61,7 +62,7 @@ public class UserServiceImp implements UserService {
         try {
             res = userDao.addUser(user);
         }catch (Exception e){
-            logger.error("add user exception:"+user.toString()+e);
+            LOGGER.error("add user exception:{}",user.toString(),e);
         }
         return res;
     }

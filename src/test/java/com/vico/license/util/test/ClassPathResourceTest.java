@@ -1,11 +1,12 @@
 package com.vico.license.util.test;
 
 import com.vico.license.util.ClassPathResourceURI;
-import org.apache.log4j.Logger;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ClassPathResourceTest {
-    private static final Logger LOGGER = Logger.getLogger(ClassPathResourceTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ClassPathResourceTest.class);
 
     @Test
     public void testGetResourceURI() {

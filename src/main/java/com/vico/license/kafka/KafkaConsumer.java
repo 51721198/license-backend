@@ -28,7 +28,6 @@ public class KafkaConsumer {
 //    @KafkaListener(topics = "${kafka.topic.helloworld}")
     @KafkaListener(topics = "${kafka.topic}")
     public void receive(String message) {
-        System.out.println("received message='{}'"+ message);
         LOGGER.info("received message='{}'", message);
         latch.countDown();
     }

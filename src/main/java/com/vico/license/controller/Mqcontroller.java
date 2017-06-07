@@ -27,7 +27,6 @@ public class Mqcontroller {
     @RequestMapping("produce")
     public String produce(){
         ProcessResult result = new ProcessResult();
-        System.out.println("kafak发送消息:...");
         for (int i = 0; i < 20; i++) {
             kafkaProducer.send(topic, "测试发送数据:" + i);
             System.out.println("现在发送第 {} 条信息."+i);
@@ -38,7 +37,6 @@ public class Mqcontroller {
                 e.printStackTrace();
             }
         }
-        System.out.println("数据发送完毕.");
         LOGGER.info("数据发送完毕.");
         result.setResultdesc("队列数据已经发送完毕");
         return JSON.toJSONString(result);

@@ -5,9 +5,10 @@ import com.vico.license.pojo.DataTableRequest;
 import com.vico.license.pojo.User;
 import com.vico.license.pojo.UserByPage;
 import com.vico.license.service.UserService;
-import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -21,7 +22,7 @@ import java.util.List;
 
 public class UserServiceImpTest {
 
-    private static final Logger logger = Logger.getLogger(LicenseServiceImpTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LicenseServiceImpTest.class);
     @Autowired
     private UserService usi;
 

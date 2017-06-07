@@ -1,10 +1,11 @@
 package com.vico.license.aop;
 
-import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class ServiceAspect {
-    private static final Logger LOGGER = Logger.getLogger(ServiceAspect.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ServiceAspect.class);
 
     @Pointcut("execution(* com.vico.license.service.*.*.*(..))")
     public void cutService(){}

@@ -33,15 +33,12 @@ public class KafkaProducer  {
 
             @Override
             public void onSuccess(SendResult<String, String> result) {
-                System.out.println("sent message='{}' with offset={}"+message+
-                        result.getRecordMetadata().offset());
                 LOGGER.info("sent message='{}' with offset={}", message,
                         result.getRecordMetadata().offset());
             }
 
             @Override
             public void onFailure(Throwable ex) {
-                System.out.println("unable to send message='{}'"+message+ex);
                 LOGGER.error("unable to send message='{}'", message, ex);
             }
         });

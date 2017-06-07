@@ -4,7 +4,8 @@ import com.vico.license.aop.IgnoreSecurity;
 import com.vico.license.aop.TokenException;
 import com.vico.license.aop.TokenManager;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -20,7 +21,7 @@ import java.lang.reflect.Method;
 
 public class SecurityInterceptor extends HandlerInterceptorAdapter {
 
-    public static final Logger LOGGER = Logger.getLogger(SecurityInterceptor.class);
+    public static final Logger LOGGER = LoggerFactory.getLogger(SecurityInterceptor.class);
 
     private static final String DEFAULT_TOKEN_NAME = "X-Token";
 

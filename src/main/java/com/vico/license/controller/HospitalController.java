@@ -7,7 +7,8 @@ import com.vico.license.pojo.LicenseDetail;
 import com.vico.license.pojo.ProcessResult;
 import com.vico.license.service.HospitalService;
 import com.vico.license.service.LicenseService;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +29,7 @@ import java.util.List;
 @RequestMapping(value = "hospitalController")
 public class HospitalController {
 
-    private static final Logger logger = Logger.getLogger(HospitalController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HospitalController.class);
     @Autowired
     private HospitalService hospitalservice;
 
@@ -40,14 +41,14 @@ public class HospitalController {
 
     @RequestMapping(value = "showhospital")
     public ProcessResult showAllHospital() {
-        logger.info("show all hospitals");
+        LOGGER.info("show all hospitals");
         try {
             List<Hospital> list = hospitalservice.showAllHospitals();
             processResult.setResultcode(ProcessResultEnum.RETURN_RESULT_SUCCESS);
             processResult.setResultdesc(ProcessResultEnum.SELECT_SUCCESS);
             processResult.setResultobject(list);
         } catch (Exception e) {
-            logger.error(ProcessResultEnum.SELECT_ERROR + e);
+            LOGGER.error("获取医院信息失败:{}" + e);
         }
         return processResult;
     }
@@ -58,7 +59,7 @@ public class HospitalController {
         Integer length = 0;
         Integer start = 0;
         DatatableModel result = null;
-        logger.info("show all hospitals");
+        LOGGER.info("show all hospitals");
         try {
             if (request != null) {
                 draw = (Integer.parseInt(request.getParameter("draw")));
@@ -67,7 +68,7 @@ public class HospitalController {
                 result = hospitalservice.getHospitalByPage(draw, start, length);
             }
         } catch (Exception e) {
-            logger.error(ProcessResultEnum.SELECT_ERROR + e);
+            LOGGER.error(ProcessResultEnum.SELECT_ERROR , e);
         }
         return result;
     }
@@ -89,7 +90,7 @@ public class HospitalController {
                 processResult.setResultdesc(ProcessResultEnum.SELECT_ERROR);
             }
         } catch (Exception e) {
-            logger.error(ProcessResultEnum.SELECT_ERROR + ProcessResultEnum.getClassPath());
+            LOGGER.error(ProcessResultEnum.SELECT_ERROR , ProcessResultEnum.getClassPath());
         }
         return processResult;
     }
@@ -116,7 +117,7 @@ public class HospitalController {
                 processResult.setResultmessage("有关联序列号信息,删除失败");
             }
         } catch (Exception e) {
-            logger.error(ProcessResultEnum.DEL_FAIL + ProcessResultEnum.getClassPath());
+            LOGGER.error(ProcessResultEnum.DEL_FAIL+"",ProcessResultEnum.getClassPath());
         }
         return processResult;
     }
@@ -156,7 +157,7 @@ public class HospitalController {
                 }
             }
         } catch (Exception e) {
-            logger.error(ProcessResultEnum.MODIFY_ERROR + ProcessResultEnum.getClassPath());
+            LOGGER.error(ProcessResultEnum.MODIFY_ERROR + ProcessResultEnum.getClassPath());
         }
         ModelAndView mv = new ModelAndView("redirect:/bounceController/toshowallhospital");
         return mv;
