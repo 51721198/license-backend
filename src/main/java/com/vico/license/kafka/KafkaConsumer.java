@@ -1,13 +1,39 @@
 package com.vico.license.kafka;
 
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.springframework.kafka.listener.MessageListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.kafka.annotation.EnableKafka;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Component;
+
+import java.util.concurrent.CountDownLatch;
 
 /**
  * Created by liudun on 2017/5/9.
  */
 //kafka消费者
-public class KafkaConsumer implements MessageListener<String,String> {
+    @Component
+    @EnableKafka
+public class KafkaConsumer {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(KafkaConsumer.class);
+
+    private CountDownLatch latch = new CountDownLatch(1);
+
+    public CountDownLatch getLatch() {
+        return latch;
+    }
+
+
+//    @KafkaListener(topics = "${kafka.topic.helloworld}")
+    @KafkaListener(topics = "${kafka.topic}")
+    public void receive(String message) {
+        System.out.println("received message='{}'"+ message);
+        LOGGER.info("received message='{}'", message);
+        latch.countDown();
+    }
+
+
 
     //不和spring集成时你需要手动设置consumer的配置并且进行加载
 //    private final kafka.javaapi.consumer.ConsumerConnector consumer;
@@ -46,8 +72,8 @@ public class KafkaConsumer implements MessageListener<String,String> {
 //        }
 //    }
 
-    @Override
-    public void onMessage(ConsumerRecord<String, String> stringStringConsumerRecord) {
-        System.out.println("kafka consumer收到的消息: "+stringStringConsumerRecord.value());
-    }
+//    @Override
+//    public void onMessage(ConsumerRecord<String, String> stringStringConsumerRecord) {
+//        System.out.println("kafka consumer收到的消息: "+stringStringConsumerRecord.value());
+//    }
 }
