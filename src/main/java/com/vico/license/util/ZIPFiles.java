@@ -40,7 +40,7 @@ public class ZIPFiles {
                 }
             }
         } catch (Exception e) {
-            LOGGER.error("生成ZIP出现问题:{}",e);
+            LOGGER.error("生成ZIP出现问题:{}", e);
             processflag = false;
             return processflag;
         } finally {
@@ -49,7 +49,7 @@ public class ZIPFiles {
                 fis.close();
                 out.close();
             } catch (IOException e) {
-                LOGGER.error("exception:{}",e);
+                LOGGER.error("exception:{}", e);
             }
         }
         return processflag;

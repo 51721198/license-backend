@@ -85,7 +85,7 @@ public class LicenseServiceImp implements LicenseService {
             encryptcode = RSAdoEncrypt.encrypt(code, publickey); // RSA算法加密
 
         } catch (Exception e) {
-            LOGGER.error("exception:{}",e);
+            LOGGER.error("exception:{}", e);
         }
         return encryptcode;
     }
@@ -191,7 +191,7 @@ public class LicenseServiceImp implements LicenseService {
             rsaKey.setPrivateKey(pri);
             rsaKey.setPublicKey(pub);
         } catch (Exception e) {
-            LOGGER.error("exception:{}",e);
+            LOGGER.error("exception:{}", e);
         }
         try {
             i = rsakeydao.insertRSAKeyPair(rsaKey);

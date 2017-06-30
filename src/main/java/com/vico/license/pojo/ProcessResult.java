@@ -78,13 +78,13 @@ public class ProcessResult implements Serializable {
         this.resultdesc = resultdesc;
     }
 
-    public ProcessResult setResult(ProcessResultEnum resultEnum){
+    public ProcessResult setResult(ProcessResultEnum resultEnum) {
         this.resultcode = resultEnum.getCode();
         this.resultmessage = resultEnum.getMsg();
         return this;
     }
 
-    public ProcessResult setResult(ProcessResultEnum resultEnum,Object obj){
+    public ProcessResult setResult(ProcessResultEnum resultEnum, Object obj) {
         this.resultcode = resultEnum.getCode();
         this.resultmessage = resultEnum.getMsg();
         this.resultobject = obj;

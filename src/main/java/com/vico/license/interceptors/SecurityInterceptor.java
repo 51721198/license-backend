@@ -15,8 +15,7 @@ import java.lang.reflect.Method;
 
 
 /**
- *
- *spring-mvc拦截器,配置文件在springmvc-servlet当中
+ * spring-mvc拦截器,配置文件在springmvc-servlet当中
  */
 
 public class SecurityInterceptor extends HandlerInterceptorAdapter {

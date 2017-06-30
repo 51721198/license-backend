@@ -33,13 +33,13 @@ public class StringToFile {
             fos.write(bytes, 0, b);
         } catch (IOException e) {
             processflag = false;
-            LOGGER.error("生成加密序列号有问题:{}",e);
+            LOGGER.error("生成加密序列号有问题:{}", e);
             return processflag;
         } finally {
             try {
                 fos.close();
             } catch (IOException e) {
-                LOGGER.error("exception:{}",e);
+                LOGGER.error("exception:{}", e);
             }
         }
         return processflag;

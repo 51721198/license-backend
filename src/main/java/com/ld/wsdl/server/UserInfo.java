@@ -1,4 +1,3 @@
-
 package com.ld.wsdl.server;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -8,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>userInfo complex type的 Java 类。
- * 
+ * <p>
  * <p>以下模式片段指定包含在此类中的预期内容。
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="userInfo"&gt;
  *   &lt;complexContent&gt;
@@ -23,13 +22,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "userInfo", propOrder = {
-    "userAge",
-    "userName"
+        "userAge",
+        "userName"
 })
 public class UserInfo {
 
@@ -38,7 +35,6 @@ public class UserInfo {
 
     /**
      * 获取userAge属性的值。
-     * 
      */
     public int getUserAge() {
         return userAge;
@@ -46,7 +42,6 @@ public class UserInfo {
 
     /**
      * 设置userAge属性的值。
-     * 
      */
     public void setUserAge(int value) {
         this.userAge = value;
@@ -54,11 +49,9 @@ public class UserInfo {
 
     /**
      * 获取userName属性的值。
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getUserName() {
         return userName;
@@ -66,11 +59,9 @@ public class UserInfo {
 
     /**
      * 设置userName属性的值。
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setUserName(String value) {
         this.userName = value;

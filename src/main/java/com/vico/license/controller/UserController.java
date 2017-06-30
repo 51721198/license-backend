@@ -34,7 +34,7 @@ public class UserController {
         try {
             users = userService.SelectAllUsers();
         } catch (Exception e) {
-            LOGGER.error("exception:{}",e);
+            LOGGER.error("exception:{}", e);
         }
         return users;
     }
@@ -79,7 +79,7 @@ public class UserController {
         return res;
     }
 
-    @RequestMapping(value = "login" ,method = RequestMethod.POST)
+    @RequestMapping(value = "login", method = RequestMethod.POST)
     public ProcessResult userLogin(@RequestBody User user) {
         ProcessResult result = new ProcessResult();
         int usergroup = -1;

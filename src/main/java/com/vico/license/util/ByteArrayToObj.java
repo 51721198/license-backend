@@ -19,7 +19,7 @@ public class ByteArrayToObj {
             bi.close();
             oi.close();
         } catch (Exception e) {
-            LOGGER.error("exception:{}",e);
+            LOGGER.error("exception:{}", e);
         }
         return obj;
     }

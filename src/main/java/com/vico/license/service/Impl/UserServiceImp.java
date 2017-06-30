@@ -34,7 +34,7 @@ public class UserServiceImp implements UserService {
     private TokenManager tokenManager;
 
     @Autowired
-    private RedisTemplate<String,User> redisTemplate;
+    private RedisTemplate<String, User> redisTemplate;
 
     @Autowired
     private RedisCacheManager manager;
@@ -52,6 +52,7 @@ public class UserServiceImp implements UserService {
     /**
      * 新加的用户同时会被写进缓存当中
      * 可以把这个@cacheput注解加在接口上,这样所有实现类都可以用,但是不推荐这样搞
+     *
      * @param user
      * @return
      */
@@ -61,8 +62,8 @@ public class UserServiceImp implements UserService {
         int res = 0;
         try {
             res = userDao.addUser(user);
-        }catch (Exception e){
-            LOGGER.error("add user exception:{}",user.toString(),e);
+        } catch (Exception e) {
+            LOGGER.error("add user exception:{}", user.toString(), e);
         }
         return res;
     }
@@ -116,13 +117,14 @@ public class UserServiceImp implements UserService {
      * cacheable注解:基于切面,请求会先到缓存中查请求参数即user对象,查到直接
      * 返回方法需要返回的值:这里为group而不是user对象
      * 如果没有查到,会放请求下去,查完数据库后会把user对象写进缓存
+     *
      * @param user
      * @return
      */
     @Override
     @Cacheable("license")
     public int userLogin(User user) {
-        User userIncache = redisTemplate.opsForValue().get("licenseUser:"+user.getUsername()+"");
+        User userIncache = redisTemplate.opsForValue().get("licenseUser:" + user.getUsername() + "");
 
         //template手动操作缓存
 //        if (userIncache != null) {

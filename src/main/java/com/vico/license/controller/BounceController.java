@@ -32,9 +32,9 @@ public class BounceController {
 
     @RequestMapping(value = "/")
     @ResponseBody
-    public String defaultPage(){
+    public String defaultPage() {
         ProcessResult result = new ProcessResult();
-        result.setResultdesc(env.getProperty("master") + " : " + env.getProperty("masterpass")+ "   111 测试页面");
+        result.setResultdesc(env.getProperty("master") + " : " + env.getProperty("masterpass") + "   Ceshiyixiarebel测试页面");
         return JSON.toJSONString(result);
     }
 

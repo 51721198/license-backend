@@ -25,11 +25,11 @@ public class Mqcontroller {
     private String topic;
 
     @RequestMapping("produce")
-    public String produce(){
+    public String produce() {
         ProcessResult result = new ProcessResult();
         for (int i = 0; i < 20; i++) {
             kafkaProducer.send(topic, "测试发送数据:" + i);
-            System.out.println("现在发送第 {} 条信息."+i);
+            System.out.println("现在发送第 {} 条信息." + i);
             LOGGER.info("现在发送第 {} 条信息.", i);
             try {
                 Thread.sleep(1000);

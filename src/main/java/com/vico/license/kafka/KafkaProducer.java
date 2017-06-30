@@ -17,7 +17,7 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 //kafka生产者
 @Component
 @EnableKafka
-public class KafkaProducer  {
+public class KafkaProducer {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(KafkaProducer.class);
 

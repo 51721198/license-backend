@@ -22,7 +22,7 @@ public class ObjToByteArray {
             bo.close();
             oo.close();
         } catch (Exception e) {
-            LOGGER.error("exception:{}",e);
+            LOGGER.error("exception:{}", e);
         }
         return bytes;
     }

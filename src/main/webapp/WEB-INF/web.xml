@@ -12,7 +12,8 @@
         <filter-class>com.vico.license.filters.CorsFilter</filter-class>
         <init-param>
             <param-name>allowOrigin</param-name>
-            <param-value>http://10.4.226.212,http://10.4.226.212/,http://evil.com/,http://172.16.25.18:8000,http://localhost:8080/,http://localhost:8000
+            <param-value>
+                http://10.4.226.212,http://10.4.226.212/,http://evil.com/,http://172.16.25.18:8000,http://localhost:8080/,http://localhost:8000
             </param-value>
         </init-param>
         <init-param>
@@ -43,16 +44,16 @@
 
     <!-- 这个编码过滤器没有用,不知道什么原因 -->
     <!--<filter>-->
-        <!--<filter-name>encodingFilter</filter-name>-->
-        <!--<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>-->
-        <!--<init-param>-->
-            <!--<param-name>encoding</param-name>-->
-            <!--<param-value>UTF-8</param-value>-->
-        <!--</init-param>-->
+    <!--<filter-name>encodingFilter</filter-name>-->
+    <!--<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>-->
+    <!--<init-param>-->
+    <!--<param-name>encoding</param-name>-->
+    <!--<param-value>UTF-8</param-value>-->
+    <!--</init-param>-->
     <!--</filter>-->
     <!--<filter-mapping>-->
-        <!--<filter-name>encodingFilter</filter-name>-->
-        <!--<url-pattern>/*</url-pattern>-->
+    <!--<filter-name>encodingFilter</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
     <!--</filter-mapping>-->
 
     <!-- 编码过滤器 -->
@@ -74,13 +75,13 @@
     </filter-mapping>
 
     <!--<filter>-->
-        <!--<filter-name>springSecurityFilterChain</filter-name>-->
-        <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
+    <!--<filter-name>springSecurityFilterChain</filter-name>-->
+    <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
     <!--</filter>-->
 
     <!--<filter-mapping>-->
-        <!--<filter-name>springSecurityFilterChain</filter-name>-->
-        <!--<url-pattern>/*</url-pattern>-->
+    <!--<filter-name>springSecurityFilterChain</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
     <!--</filter-mapping>-->
 
 
@@ -96,7 +97,7 @@
 
 
     <!--<listener>-->
-        <!--<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>-->
+    <!--<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>-->
     <!--</listener>-->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -120,8 +121,8 @@
     </servlet>
 
     <!--<servlet-mapping>-->
-        <!--<servlet-name>jsp</servlet-name>-->
-        <!--<url-pattern>*.html</url-pattern>-->
+    <!--<servlet-name>jsp</servlet-name>-->
+    <!--<url-pattern>*.html</url-pattern>-->
     <!--</servlet-mapping>-->
 
     <servlet-mapping>

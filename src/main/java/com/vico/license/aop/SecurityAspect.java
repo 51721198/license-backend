@@ -41,11 +41,12 @@ public class SecurityAspect {
     //这个切点拦截所有除了BounceController之外所有其他controller中的所有方法
 //    @Pointcut("execution(* com.vico.license.controller.*.*(..)) && !bean(bounceController)")
     //这个切点拦截打到所有cotroller的请求
-                    //这个*代表任意返回值             类名.方法(..)两点表示任意参数
+    //                这个*代表任意返回值             类名.方法(..)两点表示任意参数
     @Pointcut("execution(* com.vico.license.controller.*.*(..))")
-    public void cutMethodRequest(){}
+    public void cutMethodRequest() {
+    }
 
-//    @Before("needAnnotation()")
+    //    @Before("needAnnotation()")
     @Before("cutMethodRequest()")
     public void before(JoinPoint joinPoint) throws Throwable {    //Before型通知只能用JoinPoint,不能用ProceedingJoinPoint
     }

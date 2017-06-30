@@ -4,9 +4,9 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:task="http://www.springframework.org/schema/task"
-       xmlns="http://www.springframework.org/schema/beans"
        xmlns:jaxws="http://cxf.apache.org/jaxws"
        xmlns:soap="http://cxf.apache.org/bindings/soap"
+       xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation=
                "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
@@ -44,14 +44,17 @@
 
 
     <!--<jaxws:client id="webServiceBean" serviceClass="com.ld.wsdl.server.WebService001"-->
-                  <!--address="http://localhost:8888/webService/test" />-->
+    <!--address="http://localhost:8888/webService/test" />-->
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <!-- mapper xml文件扫描路径-->
         <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+        <!-- mybatis 配置文件-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
         <!--pojo包扫描路径-->
         <property name="typeAliasesPackage" value="com.vico.license.pojo"/>
+
     </bean>
 
     <!-- mapper 接口扫描路径 -->
@@ -59,7 +62,6 @@
         <property name="basePackage" value="com.vico.license.dao"/>
         <!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>-->
     </bean>
-
 
 
     <!-- 开启基于注解的spring事务,注意上面的bean id要和下面的transacation-manager一致,否则会报错 -->

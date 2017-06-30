@@ -32,6 +32,12 @@ public class ThriftServiceServerFactory implements InitializingBean {
     private String serviceSimpleName;
 
     private ThriftServer serverThread;
+    //用来注册zk地址的,暂时用不上
+    private String configPath;
+
+    ThriftServiceServerFactory() {
+        System.out.println("构造方法执行!!!!!!!!!");
+    }
 
     public Integer getPort() {
         return port;
@@ -62,9 +68,6 @@ public class ThriftServiceServerFactory implements InitializingBean {
         this.serviceIface = serviceIface;
     }
 
-    //用来注册zk地址的,暂时用不上
-    private String configPath;
-
     public String getConfigPath() {
         return configPath;
     }
@@ -73,50 +76,46 @@ public class ThriftServiceServerFactory implements InitializingBean {
         this.configPath = configPath;
     }
 
-    ThriftServiceServerFactory(){
-        System.out.println("构造方法执行!!!!!!!!!");
-    }
-
     @PostConstruct
-    public void postConstruct(){
+    public void postConstruct() {
         System.out.println("postConstruct方法执行!!!!!");
     }
 
-    public void init(){
+    public void init() {
         System.out.println("init()方法被执行!!!!!!");
     }
 
-    public void destory(){
+    public void destory() {
         System.out.println("destory()方法被执行!!!!!!");
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
         System.out.println("afterPropertiesSet方法执行!!!!!!");
-         // processor = 服务端接口名 + $Processor;
+        // processor = 服务端接口名 + $Processor;
         //forName方法用来根据名称获取类,并不会生成实例对象,加了$后获取的是内部类
         Class Processor = Class.forName(serviceIface.getName() + "$Processor");
 
         // 接口iface = 服务端接口名 + $Iface;
         Class Iface = Class.forName(serviceIface.getName() + "$Iface");
 
-         // 列用iface获取构造类
+        // 列用iface获取构造类
         Constructor con = Processor.getConstructor(Iface);
 
-         // 处理类 = 调用iface的构造类,把实现类作为参数传给iface的构造方法
+        // 处理类 = 调用iface的构造类,把实现类作为参数传给iface的构造方法
         TProcessor processor = (TProcessor) con.newInstance(serviceImpl);
 
-        serverThread = new ThriftServer(port,processor);
+        serverThread = new ThriftServer(port, processor);
         ExecutorService service = Executors.newCachedThreadPool();
         service.execute(serverThread);
     }
 
-    public class ThriftServer implements Runnable{
+    public class ThriftServer implements Runnable {
 
         private Integer port;
         private TProcessor processor;
 
-        ThriftServer(Integer port,TProcessor processor){
+        ThriftServer(Integer port, TProcessor processor) {
             this.port = port;
             this.processor = processor;
         }

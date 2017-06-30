@@ -12,8 +12,8 @@ import java.util.concurrent.CountDownLatch;
  * Created by liudun on 2017/5/9.
  */
 //kafka消费者
-    @Component
-    @EnableKafka
+@Component
+@EnableKafka
 public class KafkaConsumer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(KafkaConsumer.class);
@@ -25,13 +25,12 @@ public class KafkaConsumer {
     }
 
 
-//    @KafkaListener(topics = "${kafka.topic.helloworld}")
+    //    @KafkaListener(topics = "${kafka.topic.helloworld}")
     @KafkaListener(topics = "${kafka.topic}")
     public void receive(String message) {
         LOGGER.info("received message='{}'", message);
         latch.countDown();
     }
-
 
 
     //不和spring集成时你需要手动设置consumer的配置并且进行加载

@@ -68,7 +68,7 @@ public class HospitalController {
                 result = hospitalservice.getHospitalByPage(draw, start, length);
             }
         } catch (Exception e) {
-            LOGGER.error(ProcessResultEnum.SELECT_ERROR , e);
+            LOGGER.error(ProcessResultEnum.SELECT_ERROR, e);
         }
         return result;
     }
@@ -90,7 +90,7 @@ public class HospitalController {
                 processResult.setResultdesc(ProcessResultEnum.SELECT_ERROR);
             }
         } catch (Exception e) {
-            LOGGER.error(ProcessResultEnum.SELECT_ERROR , ProcessResultEnum.getClassPath());
+            LOGGER.error(ProcessResultEnum.SELECT_ERROR, ProcessResultEnum.getClassPath());
         }
         return processResult;
     }
@@ -117,7 +117,7 @@ public class HospitalController {
                 processResult.setResultmessage("有关联序列号信息,删除失败");
             }
         } catch (Exception e) {
-            LOGGER.error(ProcessResultEnum.DEL_FAIL+"",ProcessResultEnum.getClassPath());
+            LOGGER.error(ProcessResultEnum.DEL_FAIL + "", ProcessResultEnum.getClassPath());
         }
         return processResult;
     }

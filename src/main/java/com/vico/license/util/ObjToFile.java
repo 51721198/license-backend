@@ -27,7 +27,7 @@ public class ObjToFile {
             try {
                 oos.close();
             } catch (IOException e) {
-                LOGGER.error("exception:{}",e);
+                LOGGER.error("exception:{}", e);
             }
         }
         return processflag;

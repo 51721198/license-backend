@@ -189,7 +189,7 @@ public class LicenseController {
             IOUtils.copy(inputStream1, response.getOutputStream());
             response.flushBuffer();
         } catch (Exception e) {
-            LOGGER.error("exception:{}",e);
+            LOGGER.error("exception:{}", e);
         }
 
         try {
@@ -225,7 +225,7 @@ public class LicenseController {
             IOUtils.copy(inputStream1, response.getOutputStream());
             response.flushBuffer();
         } catch (Exception e) {
-            LOGGER.error("exception{}",e);
+            LOGGER.error("exception{}", e);
         }
 
         try {
@@ -261,19 +261,19 @@ public class LicenseController {
 
         System.out.println(bindingResult.toString());
 
-        if(bindingResult.hasFieldErrors()){
-            LOGGER.error("序列号参数绑定异常:"+bindingResult.getFieldError().getDefaultMessage());
+        if (bindingResult.hasFieldErrors()) {
+            LOGGER.error("序列号参数绑定异常:" + bindingResult.getFieldError().getDefaultMessage());
             processResult.setResultdesc("参数绑定失败");
             return processResult;
         }
 
         try {
             int i = licenseService.saveCode(licensedetail);
-           if (i != 1){
-               LOGGER.warn("序列号保存失败"+licensedetail.toString());
-           }
+            if (i != 1) {
+                LOGGER.warn("序列号保存失败" + licensedetail.toString());
+            }
         } catch (Exception e) {
-            LOGGER.warn("序列号保存失败"+licensedetail.toString());
+            LOGGER.warn("序列号保存失败" + licensedetail.toString());
             LOGGER.error(ProcessResultEnum.INSERT_ERROR + ProcessResultEnum.getClassPath());
             processResult.setResultdesc(ProcessResultEnum.CREATE_FAIL);
             return processResult;

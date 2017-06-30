@@ -14,11 +14,11 @@ public interface HospitalService {
      * @Title: showAllHospitals
      * @Description: 查
      */
-     List<Hospital> showAllHospitals();
+    List<Hospital> showAllHospitals();
 
-     String selectHospitalName(int hospitalNumber);
+    String selectHospitalName(int hospitalNumber);
 
-     Hospital showOneHospital(int hospitalNumber);
+    Hospital showOneHospital(int hospitalNumber);
 
 
     /**
@@ -26,11 +26,11 @@ public interface HospitalService {
      * @return: int
      * @Description: 增, 删, 改
      */
-     int addHospital(Hospital hospital);
+    int addHospital(Hospital hospital);
 
-     int deleteHospital(int hospitalNumber);
+    int deleteHospital(int hospitalNumber);
 
-     int updateHospital(Hospital hospital);
+    int updateHospital(Hospital hospital);
 
-     DatatableModel getHospitalByPage(Integer draw, Integer start, Integer length);
+    DatatableModel getHospitalByPage(Integer draw, Integer start, Integer length);
 }

@@ -12,11 +12,11 @@
     <!-- 注解驱动 -->
     <mvc:annotation-driven>
         <mvc:message-converters>
-        <!--设置原因可以参考:http://wiki.sankuai.com/pages/viewpage.action?pageId=257283414-->
-        <bean class="org.springframework.http.converter.StringHttpMessageConverter">
-            <constructor-arg name="defaultCharset" value="utf-8"/>
-        </bean>
-        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+            <!--设置原因可以参考:http://wiki.sankuai.com/pages/viewpage.action?pageId=257283414-->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg name="defaultCharset" value="utf-8"/>
+            </bean>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
         </mvc:message-converters>
     </mvc:annotation-driven>
 
@@ -31,36 +31,36 @@
 
     <!-- 前端控制器需要扫描的controller位置-->
     <context:component-scan base-package="com.vico.license" use-default-filters="false">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
     <!-- aop 所用的bean 及aop相关配置,作用与controller中的aop必须在这个context中进行声明,否则无效,这里使用了@component注解因此不用再配置-->
     <!--<bean id="tokenManager" class="com.vico.license.aop.DefaultTokenManager"/>-->
     <!--<bean id="securityAspect" class="com.vico.license.aop.SecurityAspect">-->
-        <!--<property name="tokenManager" ref="tokenManager"/>-->
-        <!--<property name="tokenName" value="X-Token"/>-->
+    <!--<property name="tokenManager" ref="tokenManager"/>-->
+    <!--<property name="tokenName" value="X-Token"/>-->
     <!--</bean>-->
 
 
     <!-- 视图选择器 -->
     <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-        <!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>-->
-        <!--<property name="prefix" value="/WEB-INF/pages/"/>-->
-        <!--<property name="suffix" value=".html"/>-->
+    <!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>-->
+    <!--<property name="prefix" value="/WEB-INF/pages/"/>-->
+    <!--<property name="suffix" value=".html"/>-->
     <!--</bean>-->
-<bean id="tokenManager" class="com.vico.license.aop.DefaultTokenManager"/>
+    <bean id="tokenManager" class="com.vico.license.aop.DefaultTokenManager"/>
 
     <mvc:interceptors>
         <!-- 加入TraceHandlerInterceptor -->
         <mvc:interceptor>
             <!--<mvc:mapping path="/**"/>-->
-            <mvc:mapping path="/licenseController/showallcodesByPage" />
+            <mvc:mapping path="/licenseController/showallcodesByPage"/>
             <!--过滤掉不想进行拦截的url-->
             <mvc:exclude-mapping path="/user/login"/>
             <!-- 想加入mtrace的url -->
             <bean class="com.vico.license.interceptors.SecurityInterceptor">
-                <property name="tokenManager" ref="tokenManager" />
-                <property name="tokenName" value="X-Token" />
+                <property name="tokenManager" ref="tokenManager"/>
+                <property name="tokenName" value="X-Token"/>
             </bean>
         </mvc:interceptor>
         <!-- 其它配置 -->
