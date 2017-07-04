@@ -11,21 +11,22 @@
             <PatternLayout pattern="%d{yyyy/MM/dd HH:mm:ss.SSS} %t [%p] %c{1} (%F:%L) %msg%n"/>
         </console>
 
-        <!--文件会打印出所有信息，这个log每次运行程序会自动清空，由append属性决定，这个也挺有用的，适合临时测试用-->
-        <File name="log" fileName="/data/logs/test.log" append="false">
+        <!--实时log文件-->
+        <File name="logFile" fileName="/data/logs/request.log">
             <PatternLayout pattern="%d{yyyy/MM/dd HH:mm:ss.SSS} %t [%p] %c{1} (%F:%L) %msg%n"/>
         </File>
 
         <!-- 这个会打印出所有的info及以下级别的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
         <RollingFile name="RollingFileInfo" fileName="/data/logs/info.log"
-                     filePattern="${sys:user.home}/logs/$${date:yyyy-MM}/info-%d{yyyy-MM-dd}-%i.log">
+                     filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
             <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
-            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="ACCEPT"/>
             <PatternLayout pattern="%d{yyyy/MM/dd HH:mm:ss.SSS} %t [%p] %c{1} (%F:%L) %msg%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy/>
                 <SizeBasedTriggeringPolicy size="100 MB"/>
             </Policies>
+            <DefaultRolloverStrategy max="20"/>
         </RollingFile>
 
         <RollingFile name="RollingFileWarn" fileName="/data/logs/warn.log"
@@ -53,12 +54,13 @@
     <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效-->
     <loggers>
         <!--过滤掉spring和mybatis的一些无用的DEBUG信息-->
-        <logger name="org.springframework" level="INFO"></logger>
-        <logger name="org.mybatis" level="INFO"></logger>
-        <logger name="org.apache" level="INFO"></logger>
-        <logger name="org.hibernate" level="INFO"></logger>
-        <root level="INFO">
+        <!--<logger name="org.springframework" level="INFO"></logger>-->
+        <!--<logger name="org.mybatis" level="INFO"></logger>-->
+        <!--<logger name="org.apache" level="INFO"></logger>-->
+        <!--<logger name="org.hibernate" level="INFO"></logger>-->
+        <root level="info" includeLocation="true">
             <appender-ref ref="Console"/>
+            <appender-ref ref="logFile"/>
             <appender-ref ref="RollingFileInfo"/>
             <appender-ref ref="RollingFileWarn"/>
             <appender-ref ref="RollingFileError"/>

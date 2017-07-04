@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:soap="http://cxf.apache.org/bindings/soap"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation=
+               "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	                        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+	                        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+	                        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+                            http://cxf.apache.org/jaxws
+                            http://cxf.apache.org/schemas/jaxws.xsd"
+       default-lazy-init="false">
+
+    <!--扫描dao接口-->
+    <!--<context:component-scan base-package="com.dianping.zebra.sample.dao" />-->
+
+    <!--mapper 接口扫描路径 -->
+    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.vico.license.dao" />
+    </bean>
+
+    <!--分库分表group数据源,目前用不了,原因不明-->
+    <!--<bean id="dataSource" class="com.dianping.zebra.group.jdbc.GroupDataSource" init-method="init">-->
+        <!--&lt;!&ndash; jdbcRef决定需要访问的库的名字，这里指访问的是test库 &ndash;&gt;-->
+        <!--<property name="jdbcRef" value="zebra.system" />-->
+        <!--&lt;!&ndash; 选择使用背后使用哪种数据源，"c3p0"或者"tomcat-jdbc"，可以不配，默认值为"c3p0" &ndash;&gt;-->
+        <!--<property name="poolType" value="c3p0" />-->
+        <!--&lt;!&ndash; 选择配置源，默认是remote方式，这里使用的是local方式，意味着配置是本地文件 &ndash;&gt;-->
+        <!--<property name="configManagerType" value="local" />-->
+        <!--<property name="maxIdleTime" value="1800" />-->
+        <!--<property name="idleConnectionTestPeriod" value="60" />-->
+        <!--<property name="acquireRetryAttempts" value="3" />-->
+        <!--<property name="acquireRetryDelay" value="300" />-->
+        <!--<property name="maxStatements" value="0" />-->
+        <!--<property name="maxStatementsPerConnection" value="100" />-->
+        <!--<property name="numHelperThreads" value="6" />-->
+        <!--<property name="maxAdministrativeTaskTime" value="5" />-->
+        <!--<property name="preferredTestQuery" value="SELECT 1" />-->
+    <!--</bean>-->
+
+
+    <!--配置读写分离数据源 , 但是用不了-->
+    <bean id="readDs" class="com.dianping.zebra.single.jdbc.SingleDataSource" init-method="init" destroy-method="close">
+        <!-- jdbcRef决定需要访问的库的名字，这里指访问的是test库 -->
+        <!--<property name="jdbcRef" value="zebra.system" />-->
+        <!-- 选择使用背后使用哪种数据源，"c3p0"或者"tomcat-jdbc"，可以不配，默认值为"c3p0" -->
+        <property name="poolType" value="c3p0" />
+        <!-- 选择配置源，默认是remote方式，这里使用的是local方式，意味着配置是本地文件,注意,公司使用的是zookeeper,所以没有配这条-->
+        <!--必填，填写atlas的地址-->
+        <property name="jdbcUrl" value="${url}"/>
+        <!--必填，填写atlas的用户名-->
+        <property name="user" value="${jdbc.username}" />
+        <!--必填，填写atlas的密码-->
+        <property name="password" value="${jdbc.password}" />
+        <property name="driverClass" value="${driver}" />
+        <!-- c3p0的minPoolSize,该值对应tomcat-jdbc或druid的"minIdle" -->
+        <property name="minPoolSize" value="2" />
+        <!-- c3p0的maxPoolSize,该值对应tomcat-jdbc或druid的"maxActive" -->
+        <property name="maxPoolSize" value="10" />
+        <!-- c3p0的initialPoolSize,该值对应tomcat-jdbc或druid的"initialSize" -->
+        <property name="initialPoolSize" value="2" />
+        <!-- c3p0的checkoutTimeout,该值对应tomcat-jdbc或druid的"maxWait" -->
+        <property name="checkoutTimeout" value="2000" />
+        <property name="maxIdleTime" value="1800" />
+        <property name="idleConnectionTestPeriod" value="60" />
+        <property name="acquireRetryAttempts" value="3" />
+        <property name="acquireRetryDelay" value="300" />
+        <property name="maxStatements" value="0" />
+        <property name="maxStatementsPerConnection" value="100" />
+        <property name="numHelperThreads" value="6" />
+        <property name="maxAdministrativeTaskTime" value="5" />
+        <property name="preferredTestQuery" value="SELECT 1" />
+    </bean>
+
+    <bean id="writeDs" class="com.dianping.zebra.single.jdbc.SingleDataSource" init-method="init" destroy-method="close">
+        <!-- jdbcRef决定需要访问的库的名字，这里指访问的是test库 -->
+        <!--<property name="jdbcRef" value="zebra.system" />-->
+        <!-- 选择使用背后使用哪种数据源，"c3p0"或者"tomcat-jdbc"，可以不配，默认值为"c3p0" -->
+        <property name="poolType" value="c3p0" />
+        <!--必填，填写atlas的地址-->
+        <property name="jdbcUrl" value="${ds.db2.jdbc.url}"/>
+        <!--必填，填写atlas的用户名-->
+        <property name="user" value="${jdbc.username}" />
+        <!--必填，填写atlas的密码-->
+        <property name="password" value="${jdbc.password}" />
+        <property name="driverClass" value="${driver}" />
+        <!-- c3p0的minPoolSize,该值对应tomcat-jdbc或druid的"minIdle" -->
+        <property name="minPoolSize" value="2" />
+        <!-- c3p0的maxPoolSize,该值对应tomcat-jdbc或druid的"maxActive" -->
+        <property name="maxPoolSize" value="10" />
+        <!-- c3p0的initialPoolSize,该值对应tomcat-jdbc或druid的"initialSize" -->
+        <property name="initialPoolSize" value="2" />
+        <!-- c3p0的checkoutTimeout,该值对应tomcat-jdbc或druid的"maxWait" -->
+        <property name="checkoutTimeout" value="2000" />
+        <property name="maxIdleTime" value="1800" />
+        <property name="idleConnectionTestPeriod" value="60" />
+        <property name="acquireRetryAttempts" value="3" />
+        <property name="acquireRetryDelay" value="300" />
+        <property name="maxStatements" value="0" />
+        <property name="maxStatementsPerConnection" value="100" />
+        <property name="numHelperThreads" value="6" />
+        <property name="maxAdministrativeTaskTime" value="5" />
+        <property name="preferredTestQuery" value="SELECT 1" />
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--datasource-->
+        <property name="dataSource" ref="readDs"/>
+        <!--Mapper files-->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+        <!--Entity package-->
+        <!--<property name="typeAliasesPackage" value="com.dianping.zebra.dao.entity" />-->
+    </bean>
+
+    <!-- 开启基于注解的spring事务,注意上面的bean id要和下面的transacation-manager一致,否则会报错 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="readDs"/>
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+</beans>

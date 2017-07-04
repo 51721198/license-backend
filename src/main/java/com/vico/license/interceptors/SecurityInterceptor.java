@@ -68,7 +68,14 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter {
             throw new TokenException(message);
         }
 
+        LOGGER.warn("ceshiceshi!!!!!!!");
+        LOGGER.error("ceshiyixia");
         LOGGER.info("拦截器验证通过");
+        try {
+            throw new Exception("ceshisc");
+        }catch (Exception e){
+            LOGGER.error("测试目的抛出异常");
+        }
 
         //调用目标方法
         return true;
