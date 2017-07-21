@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -252,18 +251,17 @@ public class LicenseController {
      * 后端非空判断采用javax.validation,防止前端js非空判断失效
      */
     @RequestMapping(value = "savecode", method = RequestMethod.POST)
-    public ProcessResult saveCode(@Valid @RequestBody LicenseDetail licensedetail, BindingResult bindingResult) {
+    public ProcessResult saveCode(@Valid  LicenseDetail licensedetail, BindingResult bindingResult) {
         ProcessResult processResult = new ProcessResult();
+
         /**
-         * 非空判断,假如传入信息出现了空值,则返回生成序列号页面
+         * 假如入参是application/json格式,则只能采用@RequestBody进行入参绑定,这种情况下@valid校验无法正常工作
+         * 假如入参是application/x-www-form-urlencoded,则这种使用@RequestBody绑定会抛异常,去掉该注解后@valid正常
          */
-        System.out.println(licensedetail.toString());
-
-        System.out.println(bindingResult.toString());
-
         if (bindingResult.hasFieldErrors()) {
             LOGGER.error("序列号参数绑定异常:" + bindingResult.getFieldError().getDefaultMessage());
-            processResult.setResultdesc("参数绑定失败");
+            processResult.setResultdesc(bindingResult.getFieldError().getDefaultMessage());
+            processResult.setResultcode(ProcessResultEnum.RETURN_RESULT_FAIL);
             return processResult;
         }
 
