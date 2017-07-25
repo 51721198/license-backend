@@ -9,6 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -57,5 +58,10 @@ public class BounceController {
     @RequestMapping(value = "toaddhospital")
     public String toAdd() {
         return "addhospital";
+    }
+
+    @RequestMapping(value = "exception",method = RequestMethod.GET)
+    public String testException() throws Exception {
+        throw new Exception("controller exception");
     }
 }
