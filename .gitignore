@@ -22,4 +22,3 @@ bin-release/
 # information for Eclipse / Flash Builder.
 /src/main/resources/hosts.properties
 /license.iml
-!/src/main/resources/hosts.properties
