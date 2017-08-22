@@ -25,6 +25,7 @@ import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -49,36 +50,32 @@ public class LicenseController {
     private Environment env;
 
     @RequestMapping(value = "createcode", method = RequestMethod.GET)
-    public ProcessResult sourceCode(@PathParam("hosnumber") String hosnumber, @PathParam("duedate") String duedate) {
-        Map<String, String> codeMap = null;
-        ProcessResult processResult = new ProcessResult();
+    public ProcessResult sourceCode(@PathParam("hosnumber") String hosnumber, @PathParam("duedate") String duedate) throws Exception {
+        Map<String, String> codeMap;
+        ProcessResult<Map<String,String>> processResult = new ProcessResult();
         try {
             if (hosnumber != null && duedate != null) {
                 codeMap = licenseService.createSourceCode(duedate, Integer.parseInt(hosnumber));
-                processResult.setResultcode(ProcessResultEnum.RETURN_RESULT_SUCCESS);
-                processResult.setResultdesc(ProcessResultEnum.CREATE_SUCCESS);
-                processResult.setResultobject(codeMap);
+                processResult.setResult(ProcessResultEnum.SUCCESS,codeMap);
             }
         } catch (Exception e) {
-            LOGGER.error(ProcessResultEnum.CREATE_ERROR + ProcessResultEnum.getClassPath());
+            LOGGER.error("sourceCode exception:{}",hosnumber,duedate,e);
+            throw e;
         }
         return processResult;
     }
 
     @RequestMapping(value = "encryptcode")
     public ProcessResult encryptCode(@PathParam("sourcecode") String sourcecode) {
-        ProcessResult processResult = new ProcessResult();
+        ProcessResult<Map<RSAKey,String> > processResult = new ProcessResult<>();
         try {
             RSAKey rsakey = licenseService.getLatestRSAKey();
-
             String encryptcode = licenseService.createEncryptCode(sourcecode, rsakey.getPublicKey());
-
-            processResult.setResultcode(ProcessResultEnum.RETURN_RESULT_SUCCESS);
-            processResult.setResultdesc(ProcessResultEnum.CREATE_SUCCESS);
-            processResult.setResultmessage(encryptcode);
-            processResult.setResultobject(rsakey.getKeyId());
+            Map<RSAKey,String> encryptResult = new HashMap<>();
+            encryptResult.put(rsakey,encryptcode);
+            processResult.setResult(ProcessResultEnum.SUCCESS,encryptResult);
         } catch (Exception e) {
-            LOGGER.error(ProcessResultEnum.CREATE_ERROR + ProcessResultEnum.getClassPath());
+            LOGGER.error("encryptCode exception,sourcecode:{}",sourcecode,e);
         }
         return processResult;
     }
@@ -92,16 +89,14 @@ public class LicenseController {
     @NeedCheck("Hello world API")  //有这个注解的方法必须进行AOP拦截
     @RequestMapping(value = "showallcodes")
     public ProcessResult showAllCodes() {
-        ProcessResult processResult = new ProcessResult();
+        ProcessResult<List<LicenseDetail>> processResult = new ProcessResult<>();
         System.out.println("controller方法执行！拦截这个方法!!!!!!!!!!!!!");
 
         try {
             List<LicenseDetail> list = licenseService.listAllCodes();
-            processResult.setResultcode(ProcessResultEnum.RETURN_RESULT_SUCCESS);
-            processResult.setResultdesc(ProcessResultEnum.SELECT_SUCCESS);
-            processResult.setResultobject(list);
+            processResult.setResult(ProcessResultEnum.SUCCESS,list);
         } catch (Exception e) {
-            LOGGER.error(ProcessResultEnum.SELECT_ERROR + ProcessResultEnum.getClassPath());
+            LOGGER.error("showAllCodes exception:{}",e);
         }
         return processResult;
     }
@@ -134,28 +129,24 @@ public class LicenseController {
      */
     @RequestMapping(value = "deletecode")
     public ProcessResult deleteCode(@PathParam("serialNumberId") String serialNumberId) {
-        ProcessResult processResult = new ProcessResult();
+        ProcessResult<String> processResult = new ProcessResult<>();
 
         try {
             LicenseDetail licensedetail = licenseService.listOneCode(Integer.parseInt(serialNumberId));
 
             int lastdays = licenseService.countEndDate(licensedetail.getExpiredDate());
             if (lastdays >= 0) {
-                processResult.setResultcode(ProcessResultEnum.RETURN_RESULT_FAIL);
-                processResult.setResultdesc(ProcessResultEnum.DELETE_FAIL);
-                processResult.setResultmessage("序列号并未过期,删除失败！");
+                processResult.setResult(ProcessResultEnum.DEL_FAIL,"序列号并未过期,删除失败");
             } else {
                 int i = licenseService.deleteCode(Integer.parseInt(serialNumberId));
                 if (i == 1) {
-                    processResult.setResultcode(ProcessResultEnum.RETURN_RESULT_SUCCESS);
-                    processResult.setResultdesc(ProcessResultEnum.DELETE_SUCCESS);
+                    processResult.setResult(ProcessResultEnum.SUCCESS);
                 } else {
-                    processResult.setResultcode(ProcessResultEnum.RETURN_RESULT_FAIL);
-                    processResult.setResultdesc(ProcessResultEnum.DELETE_FAIL);
+                    processResult.setResult(ProcessResultEnum.DEL_FAIL);
                 }
             }
         } catch (Exception e) {
-            LOGGER.error(ProcessResultEnum.SELECT_ERROR + ProcessResultEnum.getClassPath());
+            LOGGER.error("deletecode serialNumberId:{} exception:{}",serialNumberId,e);
         }
         return processResult;
     }
@@ -194,14 +185,12 @@ public class LicenseController {
         try {
             int i = licenseService.modifyLicenseState(Integer.parseInt(serialNumberId));
             if (i == 1) {
-                processResult.setResultcode(ProcessResultEnum.RETURN_RESULT_SUCCESS);
-                processResult.setResultdesc(ProcessResultEnum.MODIFY_SUCCESS);
+                processResult.setResult(ProcessResultEnum.SUCCESS);
             } else {
-                processResult.setResultcode(ProcessResultEnum.RETURN_RESULT_FAIL);
-                processResult.setResultdesc(ProcessResultEnum.MODIFY_FAIL);
+                processResult.setResult(ProcessResultEnum.UPD_FAIL);
             }
         } catch (Exception e) {
-            LOGGER.error(ProcessResultEnum.MODIFY_ERROR + ProcessResultEnum.getClassPath());
+            LOGGER.error("useLicense exception,serialNumberId:{}",serialNumberId,e);
         }
     }
 
@@ -230,14 +219,12 @@ public class LicenseController {
         try {
             int i = licenseService.modifyLicenseState(Integer.parseInt(serialNumberId));
             if (i == 1) {
-                processResult.setResultcode(ProcessResultEnum.RETURN_RESULT_SUCCESS);
-                processResult.setResultdesc(ProcessResultEnum.MODIFY_SUCCESS);
+                processResult.setResult(ProcessResultEnum.SUCCESS);
             } else {
-                processResult.setResultcode(ProcessResultEnum.RETURN_RESULT_FAIL);
-                processResult.setResultdesc(ProcessResultEnum.MODIFY_FAIL);
+                processResult.setResult(ProcessResultEnum.UPD_FAIL);
             }
         } catch (Exception e) {
-            LOGGER.error(ProcessResultEnum.MODIFY_ERROR + ProcessResultEnum.getClassPath());
+            LOGGER.error("useLicense exception,serialNumberId:{}",serialNumberId,e);
         }
     }
 
@@ -252,7 +239,7 @@ public class LicenseController {
      */
     @RequestMapping(value = "savecode", method = RequestMethod.POST)
     public ProcessResult saveCode(@Valid  LicenseDetail licensedetail, BindingResult bindingResult) {
-        ProcessResult processResult = new ProcessResult();
+        ProcessResult<String> processResult = new ProcessResult<>();
 
         /**
          * 假如入参是application/json格式,则只能采用@RequestBody进行入参绑定,这种情况下@valid校验无法正常工作
@@ -260,8 +247,7 @@ public class LicenseController {
          */
         if (bindingResult.hasFieldErrors()) {
             LOGGER.error("序列号参数绑定异常:" + bindingResult.getFieldError().getDefaultMessage());
-            processResult.setResultdesc(bindingResult.getFieldError().getDefaultMessage());
-            processResult.setResultcode(ProcessResultEnum.RETURN_RESULT_FAIL);
+            processResult.setResult(ProcessResultEnum.INS_FAIL,bindingResult.getFieldError().getDefaultMessage());
             return processResult;
         }
 
@@ -272,12 +258,10 @@ public class LicenseController {
             }
         } catch (Exception e) {
             LOGGER.warn("序列号保存失败" + licensedetail.toString());
-            LOGGER.error(ProcessResultEnum.INSERT_ERROR + ProcessResultEnum.getClassPath());
-            processResult.setResultdesc(ProcessResultEnum.CREATE_FAIL);
+            processResult.setResult(ProcessResultEnum.INS_FAIL);
             return processResult;
         }
-        processResult.setResultcode(ProcessResultEnum.RETURN_RESULT_SUCCESS);
-        processResult.setResultdesc(ProcessResultEnum.INSERT_SUCCESS);
+        processResult.setResult(ProcessResultEnum.SUCCESS);
         return processResult;
     }
 
@@ -288,11 +272,9 @@ public class LicenseController {
         RSAKey rsaKey = new RSAKey();
         i = licenseService.createKeyPair(rsaKey);
         if (i == 1) {
-            processResult.setResultcode(ProcessResultEnum.RETURN_RESULT_SUCCESS);
-            processResult.setResultdesc(ProcessResultEnum.INSERT_SUCCESS);
+            processResult.setResult(ProcessResultEnum.SUCCESS);
         } else {
-            processResult.setResultcode(ProcessResultEnum.RETURN_RESULT_FAIL);
-            processResult.setResultdesc(ProcessResultEnum.INSERT_FAIL);
+            processResult.setResult(ProcessResultEnum.INS_FAIL);
         }
         return null;
     }

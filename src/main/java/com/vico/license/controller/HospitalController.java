@@ -7,6 +7,7 @@ import com.vico.license.pojo.LicenseDetail;
 import com.vico.license.pojo.ProcessResult;
 import com.vico.license.service.HospitalService;
 import com.vico.license.service.LicenseService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,17 +37,14 @@ public class HospitalController {
     @Autowired
     private LicenseService licenseservice;
 
-    @Autowired
-    private ProcessResult processResult;
 
     @RequestMapping(value = "showhospital")
     public ProcessResult showAllHospital() {
+        ProcessResult<List<Hospital>> processResult = new ProcessResult<>();
         LOGGER.info("show all hospitals");
         try {
             List<Hospital> list = hospitalservice.showAllHospitals();
-            processResult.setResultcode(ProcessResultEnum.RETURN_RESULT_SUCCESS);
-            processResult.setResultdesc(ProcessResultEnum.SELECT_SUCCESS);
-            processResult.setResultobject(list);
+            processResult.setResult(ProcessResultEnum.SUCCESS,list);
         } catch (Exception e) {
             LOGGER.error("获取医院信息失败:{}" + e);
         }
@@ -68,7 +66,7 @@ public class HospitalController {
                 result = hospitalservice.getHospitalByPage(draw, start, length);
             }
         } catch (Exception e) {
-            LOGGER.error(ProcessResultEnum.SELECT_ERROR, e);
+            LOGGER.error("查询异常:,request:{}",request, e);
         }
         return result;
     }
@@ -79,18 +77,17 @@ public class HospitalController {
      */
     @RequestMapping(value = "showone")
     public ProcessResult selectOneHospital(@PathParam("hospitalNumber") String hospitalNumber) {
+        ProcessResult<Hospital> processResult = new ProcessResult<>();
         try {
-            if (hospitalNumber != "") {
+            if (StringUtils.isNotBlank(hospitalNumber)) {
                 Hospital hospital = hospitalservice.showOneHospital(Integer.parseInt(hospitalNumber));
-                processResult.setResultcode(ProcessResultEnum.RETURN_RESULT_SUCCESS);
-                processResult.setResultdesc(ProcessResultEnum.SELECT_SUCCESS);
                 processResult.setResultobject(hospital);
+                processResult.setResult(ProcessResultEnum.SUCCESS,hospital);
             } else {
-                processResult.setResultcode(ProcessResultEnum.RETURN_RESULT_ERROR);
-                processResult.setResultdesc(ProcessResultEnum.SELECT_ERROR);
+                processResult.setResult(ProcessResultEnum.QUE_FAIL);
             }
         } catch (Exception e) {
-            LOGGER.error(ProcessResultEnum.SELECT_ERROR, ProcessResultEnum.getClassPath());
+            LOGGER.error("selectOneHospital exception,hospitalNumber:{}",hospitalNumber,e);
         }
         return processResult;
     }
@@ -102,6 +99,7 @@ public class HospitalController {
      */
     @RequestMapping(value = "deletehospital")
     public ProcessResult deleteHospital(@PathParam("hospitalNumber") String hospitalNumber) {
+        ProcessResult<String> processResult = new ProcessResult<>();
         try {
             List<LicenseDetail> list = licenseservice.selectByhospitalNumber(Integer.parseInt(hospitalNumber));
             if (list.isEmpty()) {
@@ -113,11 +111,10 @@ public class HospitalController {
                     processResult.setResult(ProcessResultEnum.DEL_FAIL);
                 }
             } else {
-                processResult.setResult(ProcessResultEnum.DEL_FAIL);
-                processResult.setResultmessage("有关联序列号信息,删除失败");
+                processResult.setResult(ProcessResultEnum.DEL_FAIL,"有关联序列号信息,删除失败");
             }
         } catch (Exception e) {
-            LOGGER.error(ProcessResultEnum.DEL_FAIL + "", ProcessResultEnum.getClassPath());
+            LOGGER.error("deleteHospital exception,hospitalNumber:{}:",hospitalNumber,e);
         }
         return processResult;
     }
@@ -132,6 +129,8 @@ public class HospitalController {
      */
     @RequestMapping(value = "addhospital")
     public ModelAndView addHospital(@Valid Hospital hospital, BindingResult result) {
+
+        ProcessResult<?> processResult = new ProcessResult<>();
         /**
          * 后台非空判断,假如输入的医院编号和名称为空,则返回原页面
          */
@@ -157,10 +156,9 @@ public class HospitalController {
                 }
             }
         } catch (Exception e) {
-            LOGGER.error(ProcessResultEnum.MODIFY_ERROR + ProcessResultEnum.getClassPath());
+            LOGGER.error("addHospital exception:hospital:{}",hospital,e);
         }
-        ModelAndView mv = new ModelAndView("redirect:/bounceController/toshowallhospital");
-        return mv;
+        return new ModelAndView("redirect:/bounceController/toshowallhospital");
     }
 
 }

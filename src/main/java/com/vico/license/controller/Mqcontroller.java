@@ -1,6 +1,7 @@
 package com.vico.license.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.vico.license.enums.ProcessResultEnum;
 import com.vico.license.kafka.KafkaProducer;
 import com.vico.license.pojo.ProcessResult;
 import org.slf4j.LoggerFactory;
@@ -26,7 +27,7 @@ public class Mqcontroller {
 
     @RequestMapping("produce")
     public String produce() {
-        ProcessResult result = new ProcessResult();
+        ProcessResult<String> result = new ProcessResult<>();
         for (int i = 0; i < 20; i++) {
             kafkaProducer.send(topic, "测试发送数据:" + i);
             System.out.println("现在发送第 {} 条信息." + i);
@@ -38,7 +39,7 @@ public class Mqcontroller {
             }
         }
         LOGGER.info("数据发送完毕.");
-        result.setResultdesc("队列数据已经发送完毕");
+        result.setResult(ProcessResultEnum.SUCCESS,"队列数据已经发送完毕");
         return JSON.toJSONString(result);
     }
 

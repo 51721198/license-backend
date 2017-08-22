@@ -41,7 +41,7 @@ public class SecurityAspect {
     //这个切点拦截所有除了BounceController之外所有其他controller中的所有方法
 //    @Pointcut("execution(* com.vico.license.controller.*.*(..)) && !bean(bounceController)")
     //这个切点拦截打到所有cotroller的请求
-    //                这个*代表任意返回值             类名.方法(..)两点表示任意参数
+    //                这个*代表任意返回值         包名.类名.方法(..)两点表示任意参数
     @Pointcut("execution(* com.vico.license.controller.*.*(..))")
     public void cutMethodRequest() {
     }
@@ -52,7 +52,7 @@ public class SecurityAspect {
     }
 
 
-    //只有添加了@needAnnotation注解的contorller中的方法才会被拦截
+    //只有添加了@needAnnotation注解的contorller中的方法才会被拦截,&&号的作用:两个条件必须同时满足,否则不触发aop拦截
     @Around("needAnnotation() && cutMethodRequest()")
     public Object execute(ProceedingJoinPoint pjp) throws Throwable {
         LOGGER.info("=====token安全验证!!!=====");
@@ -73,7 +73,7 @@ public class SecurityAspect {
         //检查token的有效性
         if (!tokenManager.checkToken(token)) {
             LOGGER.warn("=====token验证失败=====");
-            String message = String.format("token [%s] is invalid", token);
+            String message = String.format("can't pass security check,token:{} is invalid", token);
             throw new TokenException(message);
         }
 

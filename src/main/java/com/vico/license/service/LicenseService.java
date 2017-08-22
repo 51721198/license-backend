@@ -10,7 +10,7 @@ import java.util.Map;
 
 public interface LicenseService {
 
-    public Map<String, String> createSourceCode(String duedate, int hosnumber);
+    public Map<String, String> createSourceCode(String duedate, int hosnumber) throws Exception;
 
     public List<LicenseDetail> listAllCodes();
 

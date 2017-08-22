@@ -1,6 +1,7 @@
 package com.vico.license.exception;
 
 import com.alibaba.fastjson.JSON;
+import com.vico.license.enums.ProcessResultEnum;
 import com.vico.license.pojo.ProcessResult;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,7 +40,8 @@ public class ResponseException extends AbstractHandlerExceptionResolver {
         ModelAndView mv = new ModelAndView();
 
         ProcessResult result = new ProcessResult();
-        result.setResultdesc("发生了异常");
+        result.setResultcode(2);
+        result.setResult(ProcessResultEnum.QUE_FAIL,"发生了异常");
 
         //这里可以选择是打出所有的堆栈还是只打出异常携带的消息
         result.setResultmessage(ex.getMessage());

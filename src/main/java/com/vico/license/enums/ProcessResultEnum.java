@@ -3,52 +3,11 @@ package com.vico.license.enums;
 public enum ProcessResultEnum {
 
     SUCCESS(0, "操作成功"),
-    INS_FAIL(101, "删除失败"),
-    UPD_FAIL(202, "修改失败"),
-    DEL_FAIL(303, "删除失败");
+    INS_FAIL(101, "添加失败"),
+    UPD_FAIL(102, "修改失败"),
+    DEL_FAIL(103, "删除失败"),
+    QUE_FAIL(104,"查询异常");
 
-    /**
-     * 操作成功，返回结果1
-     */
-    public static final Integer RETURN_RESULT_SUCCESS = 1;
-    /**
-     * 操作失败，返回结果0
-     */
-    public static final Integer RETURN_RESULT_FAIL = 0;
-    /**
-     * 操作异常，返回结果-1
-     */
-    public static final Integer RETURN_RESULT_ERROR = -1;
-    /**
-     * 添加操作的三种操作结果
-     */
-    public static final String INSERT_SUCCESS = "添加成功！";
-    public static final String INSERT_FAIL = "添加失败！";
-    public static final String INSERT_ERROR = "添加异常！";
-    /**
-     * 删除操作的三种操作结果
-     */
-    public static final String DELETE_SUCCESS = "删除成功！";
-    public static final String DELETE_FAIL = "删除失败！";
-    public static final String DELETE_ERROR = "删除异常！";
-    /**
-     * 修改错做的三种操作结果
-     */
-    public static final String MODIFY_SUCCESS = "修改成功！";
-    public static final String MODIFY_FAIL = "修改失败！";
-    public static final String MODIFY_ERROR = "修改异常！";
-    /**
-     * 查询操作的三种操作结果
-     */
-    public static final String SELECT_SUCCESS = "查询成功！";
-    public static final String SELECT_FAIL = "查询失败！";
-    public static final String SELECT_ERROR = "查询异常！";
-    /**
-     * 序列号生成加密操作的三种结果
-     */
-    public static final String CREATE_SUCCESS = "生成成功！";
-    public static final String CREATE_FAIL = "生成失败！";
-    public static final String CREATE_ERROR = "生成异常！";
     private int code;
     private String msg;
 

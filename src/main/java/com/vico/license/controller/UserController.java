@@ -1,6 +1,7 @@
 package com.vico.license.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.vico.license.enums.ProcessResultEnum;
 import com.vico.license.pojo.DataTableRequest;
 import com.vico.license.pojo.ProcessResult;
 import com.vico.license.pojo.User;
@@ -81,13 +82,13 @@ public class UserController {
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ProcessResult userLogin(@RequestBody User user) {
-        ProcessResult result = new ProcessResult();
+        ProcessResult<String> result = new ProcessResult<>();
         int usergroup = -1;
         try {
             if (user != null) {
                 usergroup = userService.userLogin(user);
                 result.setResultcode(usergroup);
-                result.setResultdesc(userService.createToken(user.getUsername()));
+                result.setResult(ProcessResultEnum.SUCCESS,userService.createToken(user.getUsername()));
             }
         } catch (Exception e) {
             e.printStackTrace();

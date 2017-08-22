@@ -51,7 +51,7 @@ public class LicenseServiceImp implements LicenseService {
      * @return sourceCode
      * @see com.vico.license.service.LicenseService#createSourceCode(java.lang.String)
      */
-    public Map<String, String> createSourceCode(String duedate, int hosnumber) {
+    public Map<String, String> createSourceCode(String duedate, int hosnumber) throws Exception {
         String sourceCode = "";
         String hospitalName = "";
         hospitalName = hospitaldao.selectByPrimaryKey(hosnumber).getHospitalName();
