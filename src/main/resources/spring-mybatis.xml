@@ -19,28 +19,28 @@
 
 
     <!--普通数据源,不使用zebra,无法进行分库分表,读写分离-->
-    <!--<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init"-->
-          <!--destroy-method="close">-->
-        <!--<property name="driverClassName" value="${driver}"/>-->
-        <!--<property name="url" value="${url}"/>-->
-        <!--<property name="username" value="${jdbc.username}"/>-->
-        <!--<property name="password" value="${jdbc.password}"/>-->
-        <!--<property name="initialSize" value="0"></property>-->
-        <!--<property name="maxActive" value="20"></property>-->
-        <!--&lt;!&ndash;<property name="maxIdle" value="20"></property>&ndash;&gt;-->
-        <!--<property name="minIdle" value="0"></property>-->
-        <!--<property name="maxWait" value="60000"></property>-->
-        <!--<property name="validationQuery" value="${validationQuery}"/>-->
-        <!--<property name="testOnBorrow" value="false"/>-->
-        <!--<property name="testOnReturn" value="false"/>-->
-        <!--<property name="testWhileIdle" value="true"/>-->
-        <!--<property name="timeBetweenEvictionRunsMillis" value="60000"/>-->
-        <!--<property name="minEvictableIdleTimeMillis" value="25200000"/>-->
-        <!--<property name="removeAbandoned" value="true"/>-->
-        <!--<property name="removeAbandonedTimeout" value="1800"/>-->
-        <!--<property name="logAbandoned" value="true"/>-->
-        <!--<property name="filters" value="mergeStat"/>-->
-    <!--</bean>-->
+    <bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init"
+          destroy-method="close">
+        <property name="driverClassName" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="initialSize" value="0"></property>
+        <property name="maxActive" value="20"></property>
+        <!--<property name="maxIdle" value="20"></property>-->
+        <property name="minIdle" value="0"></property>
+        <property name="maxWait" value="60000"></property>
+        <property name="validationQuery" value="${validationQuery}"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <property name="minEvictableIdleTimeMillis" value="25200000"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="1800"/>
+        <property name="logAbandoned" value="true"/>
+        <property name="filters" value="mergeStat"/>
+    </bean>
 
 
     <!--<jaxws:client id="webServiceBean" serviceClass="com.ld.wsdl.server.WebService001"-->
@@ -55,17 +55,17 @@
         <!--<property name="typeAliasesPackage" value="com.vico.license.pojo"/>-->
     <!--</bean>-->
 
-    <!-- mapper 接口扫描路径 -->
-    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
-        <!--<property name="basePackage" value="com.vico.license.dao"/>-->
-        <!--&lt;!&ndash;<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>&ndash;&gt;-->
-    <!--</bean>-->
+     mapper 接口扫描路径
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.vico.license.dao"/>
+        <!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>-->
+    </bean>
 
 
     <!-- 开启基于注解的spring事务,注意上面的bean id要和下面的transacation-manager一致,否则会报错 -->
-    <!--<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
-        <!--<property name="dataSource" ref="dataSource"/>-->
-    <!--</bean>-->
-    <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
 </beans>
