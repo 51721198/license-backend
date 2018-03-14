@@ -1,6 +1,5 @@
 package com.vico.license.util;
 
-import com.google.common.collect.Maps;
 import com.vico.license.enums.SysMsgEnum;
 import com.vico.license.exception.BusinessException;
 
@@ -61,7 +60,7 @@ public class ResponseUtils {
     }
 
     public static String toJSONString(BusinessException exception) {
-        Map<String, Object> error = Maps.newHashMap();
+        Map<String, Object> error = new HashMap<>();
         error.put("status", exception.getCode());
         error.put("msg", exception.getMessage());
         return JsonUtil.toJson(new HashMap() {{

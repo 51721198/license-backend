@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping(value = "/")
-@PropertySource("classpath:hosts.properties")
+@PropertySource("classpath:jdbc.properties")
 public class BounceController {
     public static final Logger LOGGER = LoggerFactory.getLogger(BounceController.class);
 
